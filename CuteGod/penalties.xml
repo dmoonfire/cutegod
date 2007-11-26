@@ -1,0 +1,101 @@
+<penalties>
+  <penalty type="ReducedGrass">
+    <title>Grass is Dying!</title>
+    <block>Dead Grass Block</block>
+    <description>
+Winter has come to your
+little universe and the
+grass is dying. Dead
+grass cannot be used to
+answer prayers, so keep
+it buried if you want
+to use it.
+    </description>
+  </penalty>
+
+  <penalty type="ReducedDirt">
+    <title>Sandstorm!</title>
+    <block>Dead Dirt Block</block>
+    <description>
+Sand always falls
+through the cracks, even
+through the cracks of
+your little universe.
+Sand is moved like earth
+but cannot be used to
+answer prayers nor can it
+be built on.
+    </description>
+  </penalty>
+
+  <penalty type="ReducedWater">
+    <title>Brackish Water!</title>
+    <block>Dead Water Block</block>
+    <description>
+Eventually, stagnate water will go
+bad and some of your water blocks
+have turned brackish. These sour
+water cannot be used to build on
+so they can't be used to answer
+prayers.
+    </description>
+  </penalty>
+
+  <penalty type="IncreasedImmobile">
+    <title>Immobile Blocks!</title>
+    <block>Immobile Block</block>
+    <description>
+Some of your blocks have been
+destroyed and replaced with
+blocks that cannot be moved.
+    </description>
+  </penalty>
+
+  <penalty type="IncreasedGrabCost">
+    <title>Increased Grab Cost</title>
+    <block>Heart</block>
+    <description>
+Some trickster has poured some lead
+into your blocks, making it harder to
+pick them up. It now costs {2} hearts
+to pick up a block.
+    </description>
+  </penalty>
+
+  <penalty type="Countdown">
+    <title>Countdown</title>
+    <block>Heart</block>
+    <description>
+The Cosmic Fox has decided that to give
+you a hard time. Either that or he
+hasn't had his coffee this morning.
+Regardless, you now have a minute to
+pick up a brick or answer a prayer
+before he takes a heart away.
+    </description>
+  </penalty>
+  <penalty type="LessTime">
+    <title>Less Time</title>
+    <block>Heart</block>
+    <description>
+Once again, the Comic Fox has wandered
+to your little world in a sour mood.
+Seeing that you are keeping up with his
+demands, he speeds things up a bit. You
+now have only {0} seconds before he
+steals a heart.
+    </description>
+  </penalty>
+
+  <penalty type="Bugs">
+    <title>Bugs, Bugs, Bugs!</title>
+    <block>Enemy Bug</block>
+    <description>
+Your universe has been invaded by bugs!
+The best way to deal with them is to
+undercover them and drop a block to
+squish them. There are {1} bugs
+invading your domain.
+    </description>
+  </penalty>
+</penalties>

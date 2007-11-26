@@ -1,0 +1,295 @@
+= Layout
+
+RNW RN  RNE
+RSW RS  RSE
+*   *   *
+
+BB  BB  BB
+*   *   *
+*   *   *
+
+BB  BB  BB
+WT  DTC WT
+TS  *   TS
+
+DB  DB  DB
+DB  DB  DB
+GB  DB  GB
+
+= Layout
+
+RNW RN  RNE *
+RSW RS  RSE *
+*   *   *   *
+*   *   *   *
+
+BB  BB  BB  *
+*   *   *   *
+*   *   *   *
+*   *   *   *
+
+BB  BB  BB  TU
+WT  DTC WT  TS
+TS  *   TS  TU
+*   *   *   *
+
+DB  DB  DB  GB
+DB  DB  DB  GB
+GB  DB  GB  GB
+GB  DB  GB  GB
+
+= Layout
+
+TS  *   TS
+PW  SB  PE
+TS  *   TS
+
+GB  WB  GB
+DB  WB  DB
+GB  WB  GB
+
+= Layout
+
+TU  *   TU
+*   *   *
+TU  *   TU
+
+SB  PN  SB
+PW  WB  PE
+SB  PS  SB
+
+GB  DB  GB
+DB  WB  DB
+GB  DB  GB
+
+= Layout
+
+TT  PN  TT
+PW  WB  PE
+TT  PS  TT
+
+GB  DB  GB
+DB  WB  DB
+GB  DB  GB
+
+= Layout
+
+RNW RN  RNE
+RW  BB  RE
+RSW RS  RSE
+
+BB  BB  BB
+BB  *   BB
+*   I   *
+
+BB  BB  BB
+BB  DTC BB
+WT  I   WT
+
+DB  DB  DB
+DB  DB  DB
+DB  GB  DB
+
+= Layout
+
+SB  GB  SB
+SB  *   SB
+SB  *   SB
+
+SB  SW  SB
+SB  SB  SB
+SB  PS  SB
+
+DB  WB  DB
+DB  DB  DB
+DB  DB  DB
+
+= Layout
+
+*   *   *
+*   GB  *
+*   *   *
+
+R   PN  R
+PW  SBT PE
+R   PS  R
+
+GB  DB  GB
+DB  WB  DB
+GB  DB  GB
+
+= Layout
+
+TT  TU  TT
+TT  *   TT
+TS  *   TS
+
+GB  GB  GB
+GB  WB  GB
+GB  DB  GB
+
+= Layout
+
+TU  TS  TT
+*   *   TS
+TS  TU  TT
+
+GB  GB  GB
+DB  GB  GB
+GB  GB  GB
+
+= Layout
+
+*   *   *
+*   GO  *
+*   *   *
+
+*   *   *
+*   SB  *
+*   *   *
+
+*   *   *
+*   SB  *
+*   *   *
+
+WB  WB  WB
+WB  GB  WB
+WB  GB  WB
+
+= Layout
+
+GG *  *  *  GG
+*  *  *  *  * 
+*  *  *  *  * 
+*  *  *  *  * 
+GG *  *  *  GG
+
+SB SB *  SB SB
+SB *  *  *  SB
+*  *  *  *  * 
+SB *  *  *  SB
+SB SB *  SB SB
+
+SB SB *  SB SB
+SB *  *  *  SB
+*  *  *  *  * 
+SB *  *  *  SB
+SB SB *  SB SB
+
+DB DB GB DB DB
+DB GB GB GB DB
+GB GB WB GB GB
+DB GB GB GB DB
+DB DB GB DB DB
+
+= Layout
+
+*   *   *   *   * 
+*   *   *   *   * 
+*   RW  SB  RE  * 
+*   *   *   *   * 
+*   *   *   *   * 
+
+TS  *   *   *   TS
+TT  *   *   *   TT
+RW  I   SB  I   RE
+TT  *   *   *   TT
+TS  *   *   *   TS
+
+GB  WB  WB  WB  GB
+GB  WB  WB  WB  GB
+DB  WB  DB  WB  DB
+GB  WB  WB  WB  GB
+GB  WB  WB  WB  GB
+
+= Layout
+
+RNW RN  RN  RN  RNE
+RSW RS  RS  RS  RSE
+*   *   *   *   * 
+*   *   *   *   * 
+*   *   *   *   * 
+
+SB  SB  SB  SB  SB
+SB  SB  SB  SB  SB
+*   *   *   *   * 
+*   *   *   *   * 
+*   *   *   *   * 
+
+SB  SB  SB  SB  SB
+SB  SB  SB  SB  SB
+WT  WT  DTC WT  WT
+TU  *   *   *   TU
+TS  *   *   *   TS
+
+DB  DB  DB  DB  DB
+DB  DB  DB  DB  DB
+DB  DB  DB  DB  DB
+GB  WB  GB  WB  GB
+GB  GB  GB  GB  GB
+
+= Layout
+
+*   *   *   *   *
+*   RNW RN  RNE *
+*   RSW RS  RSE *
+*   *   *   *   *
+*   *   *   *   *
+
+*   *   *   *   *
+*   SB  SB  SB  *
+*   SB  DTC SB  *
+*   *   *   *   *
+*   *   *   *   *
+
+*   *   *   *   *
+*   SB  SB  SB  *
+*   SB  SB  SB  *
+*   TT  SB  TT  *
+*   *   PS  *   *
+
+WB  WB  WB  WB  WB
+WB  DB  DB  DB  WB
+WB  DB  DB  DB  WB
+WB  GB  DB  GB  WB
+WB  WB  WB  WB  WB
+
+= Layout
+
+*   *   *   *   *
+*   RNW RN  RNE *
+*   RW  BB  RE  *
+*   RSW RS   RSE *
+*   *   *   *   *
+
+*   *   *   *   *
+*   BB  BB  BB  *
+*   BB  GB  BB  *
+*   *   *   *   *
+*   *   *   *   *
+
+TT  *   *   *   TT
+*   BB  BB  BB  *
+*   BB  I   BB  *
+*   WT  DTC   WT  *
+TT  *   *   *   TT
+
+GB  I   I   I   GB
+I   DB  DB  DB  I
+I   DB  DB  DB  I
+I   DB  GB  DB  I
+GB  I   GB   I   GB
+
+= Layout
+
+PW  SB  SB  PE
+*   *   *   *
+PW  SB  SB  PE
+
+SB  I   I   SB
+PW  SB  SB  PE
+SB  I   I   SB
+
+DB  WB  WB  DB
+DB  WB  WB  DB
+DB  WB  WB  DB

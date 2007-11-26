@@ -1,0 +1,128 @@
+<bonuses>
+  <bonus type="ExtraHearts">
+    <title>Chest of Hearts</title>
+    <block>Heart</block>
+    <description>
+You have found a chest
+filled with {3} hearts!
+*squee*
+    </description>
+  </bonus>
+  <bonus type="GrabStack">
+    <title>Helpers!</title>
+    <block>Grass Block</block>
+    <description>
+The Rainbow Crows have
+offered to help you move
+your blocks around. You
+can now pick up {2}
+blocks at a time!
+    </description>
+  </bonus>
+
+  <bonus type="RestoreGrass">
+    <title>Summer Rain!</title>
+    <block>Grass Block</block>
+    <description>
+Some of the dead grass
+in your universe has
+come back to life!
+    </description>
+  </bonus>
+  <bonus type="RestoreDirt">
+    <title>Bit of Wind</title>
+    <block>Dirt Block</block>
+    <description>
+The sand on top has
+blown away revealing
+fresh dirt underneath!
+    </description>
+  </bonus>
+  <bonus type="RestoreWater">
+    <title>Clean Water</title>
+    <block>Water Block</block>
+    <description>
+Fresh rain has restored
+the brackish water on
+top and make it clean
+once again!
+    </description>
+  </bonus>
+
+  <bonus type="RemoveDeadGrass">
+    <title>Green Grass</title>
+    <block>Grass Block</block>
+    <description>
+You have managed to
+trick new life into
+your universe and bring
+in more healthy grass.
+    </description>
+  </bonus>
+
+  <bonus type="RemoveDeadDirt">
+    <title>Dirt Storm?</title>
+    <block>Dirt Block</block>
+    <description>
+The Worm of Ages has
+sent you some fresh
+dirt to replace your
+sand.
+    </description>
+  </bonus>
+
+  <bonus type="RemoveDeadWater">
+    <title>Water Filters</title>
+    <block>Water Block</block>
+    <description>
+After long hours of
+work, you put in some
+Universal Filters to
+clean up your water.
+    </description>
+  </bonus>
+
+  <bonus type="NoClock">
+    <title>No Countdown!</title>
+    <block>Heart</block>
+    <description>
+The Comic Fox goes
+wandering for another
+universe to bother so
+you don't have to worry
+about him stealing hearts.
+    </description>
+  </bonus>
+  <bonus type="DoubleTime">
+    <title>No Countdown!</title>
+    <block>Heart</block>
+    <description>
+You distract the Comic
+Fox so he doesn't steal
+hearts as fast. You have
+{0} seconds to move a
+block now.
+    </description>
+  </bonus>
+
+  <bonus type="GrabCost">
+    <title>Lighten Blocks</title>
+    <block>Heart</block>
+    <description>
+With a help from the
+Worm of Ages, you dig
+out some of the lead
+in your blocks. It only
+costs {2} hearts to
+pick up a block.
+    </description>
+  </bonus>
+
+  <bonus type="BugKiller">
+    <title>Bug Killer</title>
+    <block>Enemy Bug</block>
+    <description>
+Bugs die, lots of bugs die.
+    </description>
+  </bonus>
+</bonuses>

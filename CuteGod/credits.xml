@@ -1,0 +1,154 @@
+<credits>
+  <category title='Graphics'>
+    <creator name='D. Moonfire'>
+      <asset>Custom/Half Heart.png</asset>
+      <asset>Custom/Mini Bug.png</asset>
+      <asset>Custom/Sealed Grass.png</asset>
+      <asset>Custom/Sealed Dirt.png</asset>
+      <asset>Custom/Mini Clock.png</asset>
+      <asset>Custom/Dead Water Block.png</asset>
+      <asset>Custom/Water Block.png</asset>
+      <asset>Custom/Mini Star.png</asset>
+      <asset>Custom/Mini Heart.png</asset>
+      <asset>Custom/Sealed Water.png</asset>
+      <asset>Custom/Immobile Block.png</asset>
+      <asset>Custom/Invisible.png</asset>
+      <asset>Custom/Dead Grass Block.png</asset>
+      <asset>Custom/Dead Dirt Block.png</asset>
+      <asset>Custom/Invalid Selector.png</asset>
+    </creator>
+    <creator name='Danc (Lost Garden)'>
+      <asset>Plain Block.png</asset>
+      <asset>Shadow South West.png</asset>
+      <asset>Shadow Side West.png</asset>
+      <asset>Window Tall.png</asset>
+      <asset>Roof West.png</asset>
+      <asset>Tree Tall.png</asset>
+      <asset>Character Pink Girl.png</asset>
+      <asset>Star.png</asset>
+      <asset>Ramp West.png</asset>
+      <asset>Roof North West.png</asset>
+      <asset>PlanetCuteShadowTest.png</asset>
+      <asset>Shadow South.png</asset>
+      <asset>Grass Block.png</asset>
+      <asset>Selector.png</asset>
+      <asset>Door Tall Closed.png</asset>
+      <asset>Character Boy.png</asset>
+      <asset>Character Cat Girl.png</asset>
+      <asset>Roof South East.png</asset>
+      <asset>Shadow East.png</asset>
+      <asset>Stone Block Tall.png</asset>
+      <asset>Chest Open.png</asset>
+      <asset>Gem Green.png</asset>
+      <asset>Key.png</asset>
+      <asset>Water Block.png</asset>
+      <asset>Roof South.png</asset>
+      <asset>Stone Block.png</asset>
+      <asset>Ramp South.png</asset>
+      <asset>Gem Blue.png</asset>
+      <asset>Wood Block.png</asset>
+      <asset>Wall Block Tall.png</asset>
+      <asset>Tree Ugly.png</asset>
+      <asset>Shadow North East.png</asset>
+      <asset>Tree Short.png</asset>
+      <asset>Rock.png</asset>
+      <asset>Shadow North.png</asset>
+      <asset>Dirt Block.png</asset>
+      <asset>Roof South West.png</asset>
+      <asset>Character Princess Girl.png</asset>
+      <asset>Brown Block.png</asset>
+      <asset>Ramp East.png</asset>
+      <asset>Heart.png</asset>
+      <asset>Enemy Bug.png</asset>
+      <asset>Chest Closed.png</asset>
+      <asset>Shadow West.png</asset>
+      <asset>Gem Orange.png</asset>
+      <asset>Ramp North.png</asset>
+      <asset>Character Horn Girl.png</asset>
+      <asset>SpeechBubble.png</asset>
+      <asset>Shadow North West.png</asset>
+      <asset>Roof North.png</asset>
+      <asset>Roof East.png</asset>
+      <asset>Chest Lid.png</asset>
+      <asset>Wall Block.png</asset>
+      <asset>Door Tall Open.png</asset>
+      <asset>Roof North East.png</asset>
+      <asset>Shadow South East.png</asset>
+    </creator>
+  </category>
+  <category title='Programming'>
+    <creator name='D. Moonfire'>
+      <asset>MfGames.Utility.dll</asset>
+      <asset>BooGame.Sdl.dll</asset>
+      <asset>Tao.FreeType.dll</asset>
+    </creator>
+    <creator name='Rob Loach (BooGame)'>
+      <asset>BooGame.FreeGlut.dll</asset>
+      <asset>BooGame.dll</asset>
+    </creator>
+  </category>
+  <category title='Sounds'>
+    <creator name='ERH'>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29594' license='CC sampling+'>choir_c</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=33185' license='CC sampling+'>orch_2</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29758' license='CC sampling+'>angels_2</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29870' license='CC sampling+'>ghost_1</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29589' license='CC sampling+'>angels</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=32332' license='CC sampling+'>slow_atmosphere_2</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29593' license='CC sampling+'>choir_a</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29592' license='CC sampling+'>angels_4</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=30310' license='CC sampling+'>Persia</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=32422' license='CC sampling+'>slow_atmosphere_3</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=32650' license='CC sampling+'>ashes_and_gas_edit_2</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=30311' license='CC sampling+'>crier</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29591' license='CC sampling+'>atmosphere_2</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29759' license='CC sampling+'>atmosphere_3</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29934' license='CC sampling+'>atmosphere_5</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29935' license='CC sampling+'>cat_axe</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29869' license='CC sampling+'>creepy_1</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29590' license='CC sampling+'>atmosphere_1</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=33184' license='CC sampling+'>orch_1</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29595' license='CC sampling+'>enigma_1</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=29760' license='CC sampling+'>atmosphere_4</asset>
+    </creator>
+    <creator name='Lagos Disco Machine'>
+      <asset href='http://www.archive.org/details/PTNS001_LagosDiscoMachine_WarmOrangeEP' license='CC by-nc-nd/3.0'>green pullover</asset>
+      <asset href='http://www.archive.org/details/PTNS001_LagosDiscoMachine_WarmOrangeEP' license='CC by-nc-nd/3.0'>i like you but you kind of fre</asset>
+    </creator>
+    <creator name='Lervis'>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=31787' license='CC sampling+'>1200_start</asset>
+    </creator>
+    <creator name='Psychadelik Pedestrian'>
+      <asset href='http://www.toucanmusic.co.uk/' license='CC by-nc'>Departure Lounge (Marc Burt Remix)</asset>
+    </creator>
+    <creator name='Slanesh'>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=31770' license='CC sampling+'>Porte_pierre</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=31768' license='CC sampling+'>Porte_open_close</asset>
+    </creator>
+    <creator name='_ninjunkie79'>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=36753' license='CC sampling+'>_acridid_grasshop</asset>
+    </creator>
+    <creator name='harri'>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=16810' license='CC sampling+'>hhh7</asset>
+    </creator>
+    <creator name='luffy'>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=17300' license='CC sampling+'>luffy_water3</asset>
+    </creator>
+    <creator name='mattlohkamp'>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=33143' license='CC sampling+'>kick_low_1</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=33141' license='CC sampling+'>kick</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=33144' license='CC sampling+'>kick_low</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=33142' license='CC sampling+'>kick2</asset>
+    </creator>
+    <creator name='mattybattyfenno'>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=33647' license='CC sampling+'>mid_tom</asset>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=33646' license='CC sampling+'>low_tom</asset>
+    </creator>
+    <creator name='schroedel'>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=31547' license='CC sampling+'>T_raufschlie_en</asset>
+    </creator>
+    <creator name='soalicesays'>
+      <asset href='http://freesound.iua.upf.edu/samplesViewSingle.php?id=31017' license='CC sampling+'>FSice_squish</asset>
+    </creator>
+  </category>
+</credits>

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Prebuild xmlns="http://dnpb.sourceforge.net/schemas/prebuild-1.7.xsd" version="1.7">
+  <Solution name="Sprite3" version="1.0.0">
+    <Configuration name="Debug">
+      <Options>
+        <CompilerDefines>DEBUG;TRACE</CompilerDefines>
+        <OptimizeCode>false</OptimizeCode>
+        <OutputPath>bin/Debug</OutputPath>
+        <DebugInformation>true</DebugInformation>
+        <SuppressWarnings>1595</SuppressWarnings>
+      </Options>
+    </Configuration>
+    <Configuration name="Release">
+      <Options>
+        <CompilerDefines>TRACE</CompilerDefines>
+        <OutputPath>bin/Release</OutputPath>
+        <OptimizeCode>true</OptimizeCode>
+        <DebugInformation>false</DebugInformation>
+        <SuppressWarnings>1595</SuppressWarnings>
+      </Options>
+    </Configuration>
+    <Files>
+      <File>prebuild.xml</File>
+    </Files>
+
+    <Project name="MfGames.Sprite3.Backends"
+	     language="C#"
+	     assemblyName="MfGames.Sprite3.Backends"
+	     type="Library"
+	     rootNamespace="MfGames.Sprite3.Backends"
+	     version="1.0.0"
+	     path="MfGames.Sprite3.Backends"
+	     >
+      <Author>Dylan R. E. Moonfire (contact@mfgames.com)</Author>
+      <Description>Sprite3 Backend Interfaces</Description>
+      <Configuration name="Debug">
+        <Options>
+          <CompilerDefines>DEBUG;TRACE</CompilerDefines>
+          <OptimizeCode>false</OptimizeCode>
+          <OutputPath>bin/Debug</OutputPath>
+          <DebugInformation>true</DebugInformation>
+          <SuppressWarnings>1595</SuppressWarnings>
+        </Options>
+      </Configuration>
+      <Configuration name="Release">
+        <Options>
+          <CompilerDefines>TRACE</CompilerDefines>
+          <OutputPath>bin/Release</OutputPath>
+          <OptimizeCode>true</OptimizeCode>
+          <DebugInformation>false</DebugInformation>
+          <SuppressWarnings>1595</SuppressWarnings>
+        </Options>
+      </Configuration>
+      <Reference name="MfGames.Utility"/>
+      <Reference name="System.Drawing" />
+      <Reference name="System" />
+      <Files>
+        <Match pattern="*.cs" recurse="true"/>
+      </Files>
+    </Project>
+
+    <Project name="MfGames.Sprite3"
+	     language="C#"
+	     assemblyName="MfGames.Sprite3"
+	     type="Library"
+	     rootNamespace="MfGames.Sprite3"
+	     version="1.0.0"
+	     path="MfGames.Sprite3"
+	     >
+      <Author>Dylan R. E. Moonfire (contact@mfgames.com)</Author>
+      <Description>Sprite3 Primary Library</Description>
+      <Configuration name="Debug">
+        <Options>
+          <CompilerDefines>DEBUG;TRACE</CompilerDefines>
+          <OptimizeCode>false</OptimizeCode>
+          <OutputPath>bin/Debug</OutputPath>
+          <DebugInformation>true</DebugInformation>
+          <SuppressWarnings>1595</SuppressWarnings>
+        </Options>
+      </Configuration>
+      <Configuration name="Release">
+        <Options>
+          <CompilerDefines>TRACE</CompilerDefines>
+          <OutputPath>bin/Release</OutputPath>
+          <OptimizeCode>true</OptimizeCode>
+          <DebugInformation>false</DebugInformation>
+          <SuppressWarnings>1595</SuppressWarnings>
+        </Options>
+      </Configuration>
+      <ReferencePath>..\\lib</ReferencePath>
+      <?if OS = "Win32" ?>
+        <ReferencePath>..\\lib\\win32deps</ReferencePath>
+        <ReferencePath>..\\lib\\net-2.0</ReferencePath>
+      <?else ?>
+        <ReferencePath>..\\lib\\mono-2.0</ReferencePath>
+      <?endif ?>
+      <Reference name="System" />
+      <Reference name="System.Drawing" />
+      <Reference name="System.Xml" />
+      <Reference name="MfGames.Sprite3.Backends"/>
+      <Reference name="MfGames.Utility"/>
+      <Reference name="C5"/>
+      <Files>
+        <Match pattern="*.cs" recurse="true"/>
+      </Files>
+    </Project>
+
+    <Project name="MfGames.Sprite3.Demos"
+	     language="C#"
+	     assemblyName="MfGames.Sprite3.Demos"
+	     type="Library"
+	     rootNamespace="MfGames.Sprite3.Demos"
+	     version="1.0.0"
+	     path="MfGames.Sprite3.Demos"
+	     >
+      <Author>Dylan R. E. Moonfire (contact@mfgames.com)</Author>
+      <Description>Sprite3 Demostrations</Description>
+      <Configuration name="Debug">
+        <Options>
+          <CompilerDefines>DEBUG;TRACE</CompilerDefines>
+          <OptimizeCode>false</OptimizeCode>
+          <OutputPath>bin/Debug</OutputPath>
+          <DebugInformation>true</DebugInformation>
+          <SuppressWarnings>1595</SuppressWarnings>
+        </Options>
+      </Configuration>
+      <Configuration name="Release">
+        <Options>
+          <CompilerDefines>TRACE</CompilerDefines>
+          <OutputPath>bin/Release</OutputPath>
+          <OptimizeCode>true</OptimizeCode>
+          <DebugInformation>false</DebugInformation>
+          <SuppressWarnings>1595</SuppressWarnings>
+        </Options>
+      </Configuration>
+      <ReferencePath>..\\lib</ReferencePath>
+      <?if OS = "Win32" ?>
+      <ReferencePath>..\\lib\\win32deps</ReferencePath>
+      <ReferencePath>..\\lib\\net-2.0</ReferencePath>
+      <?else ?>
+      <ReferencePath>..\\lib\\mono-2.0</ReferencePath>
+      <?endif ?>
+      <Reference name="System.Drawing" />
+      <Reference name="System" />
+      <Reference name="MfGames.Sprite3"/>
+      <Reference name="MfGames.Sprite3.Backends"/>
+      <Reference name="MfGames.Utility"/>
+      <Reference name="C5"/>
+      <Files>
+        <Match pattern="*.cs" recurse="true"/>
+      </Files>
+    </Project>
+
+    <!--
+	BooGame Implementations
+    -->
+
+    <Project name="MfGames.Sprite3.BooGameBE"
+	     language="C#"
+	     assemblyName="MfGames.Sprite3.BooGameBE"
+	     type="Library"
+	     rootNamespace="MfGames.Sprite3.BooGameBE"
+	     version="1.0.0"
+	     path="MfGames.Sprite3.BooGameBE"
+	     >
+      <Author>Dylan R. E. Moonfire (contact@mfgames.com)</Author>
+      <Description>Sprite3 BooGame Backend</Description>
+      <Configuration name="Debug">
+        <Options>
+          <CompilerDefines>DEBUG;TRACE</CompilerDefines>
+          <OptimizeCode>false</OptimizeCode>
+          <OutputPath>bin/Debug</OutputPath>
+          <DebugInformation>true</DebugInformation>
+          <SuppressWarnings>1595</SuppressWarnings>
+        </Options>
+      </Configuration>
+      <Configuration name="Release">
+        <Options>
+          <CompilerDefines>TRACE</CompilerDefines>
+          <OutputPath>bin/Release</OutputPath>
+          <OptimizeCode>true</OptimizeCode>
+          <DebugInformation>false</DebugInformation>
+          <SuppressWarnings>1595</SuppressWarnings>
+        </Options>
+      </Configuration>
+      <ReferencePath>..\\lib</ReferencePath>
+      <?if OS = "Win32" ?>
+      <ReferencePath>..\\lib\\win32deps</ReferencePath>
+      <ReferencePath>..\\lib\\net-2.0</ReferencePath>
+      <?else ?>
+      <ReferencePath>..\\lib\\mono-2.0</ReferencePath>
+      <?endif ?>
+      <Reference name="System.Drawing" />
+      <Reference name="System" />
+      <Reference name="MfGames.Sprite3.Backends"/>
+      <Reference name="MfGames.Utility"/>
+      <Reference name="BooGame"/>
+      <Reference name="Tao.OpenGl"/>
+      <Files>
+        <Match pattern="*.cs" recurse="true"/>
+      </Files>
+    </Project>
+
+    <Project name="BooGameDemos"
+	     language="C#"
+	     assemblyName="BooGameDemos"
+	     type="WinExe"
+	     rootNamespace="BooGameDemos"
+	     version="1.0.0"
+	     path="BooGameDemos"
+	     >
+      <Author>Dylan R. E. Moonfire (contact@mfgames.com)</Author>
+      <Description>Sprite3 BooGame Demostrations</Description>
+      <Configuration name="Debug">
+        <Options>
+          <CompilerDefines>DEBUG;TRACE</CompilerDefines>
+          <OptimizeCode>false</OptimizeCode>
+          <OutputPath>bin/Debug</OutputPath>
+          <DebugInformation>true</DebugInformation>
+          <SuppressWarnings>1595</SuppressWarnings>
+        </Options>
+      </Configuration>
+      <Configuration name="Release">
+        <Options>
+          <CompilerDefines>TRACE</CompilerDefines>
+          <OutputPath>bin/Release</OutputPath>
+          <OptimizeCode>true</OptimizeCode>
+          <DebugInformation>false</DebugInformation>
+          <SuppressWarnings>1595</SuppressWarnings>
+        </Options>
+      </Configuration>
+      <ReferencePath>..\\lib</ReferencePath>
+      <?if OS = "Win32" ?>
+      <ReferencePath>..\\lib\\win32deps</ReferencePath>
+      <ReferencePath>..\\lib\\net-2.0</ReferencePath>
+      <?else ?>
+      <ReferencePath>..\\lib\\mono-2.0</ReferencePath>
+      <?endif ?>
+      <Reference name="System.Drawing" />
+      <Reference name="System" />
+      <Reference name="MfGames.Sprite3.Backends" localCopy="true" />
+      <Reference name="MfGames.Sprite3" localCopy="true" />
+      <Reference name="MfGames.Sprite3.Demos" localCopy="true" />
+      <Reference name="MfGames.Sprite3.BooGameBE" localCopy="true" />
+      <Reference name="MfGames.Utility"/>
+      <Reference name="C5" localCopy="true" />
+      <Reference name="BooGame" localCopy="true" />
+      <Reference name="BooGame.Sdl" localCopy="true" />
+      <Reference name="Tao.OpenGl" localCopy="true"/>
+      <Reference name="Tao.Sdl" localCopy="true"/>
+      <Reference name="Tao.DevIl" localCopy="true"/>
+      <Reference name="Tao.PhysFs" localCopy="true"/>
+      <Files>
+	<Match pattern="*.cs" recurse="true"/>
+	<?if OS = "Win32" ?>
+	<Match path="..\\lib\\win32deps" pattern="*.dll"
+	       buildAction="Content" copyToOutput="Always" />
+	<?else ?>
+	<Match path="..\\lib\\mono-2.0" pattern="*.config"
+	       buildAction="Content" copyToOutput="Always" />
+	<?endif ?>
+      </Files>
+    </Project>
+
+    <!--
+	CuteGod
+    -->
+
+    <Project name="CuteGod"
+	     language="C#"
+	     assemblyName="CuteGod"
+	     type="WinExe"
+	     rootNamespace="CuteGod"
+	     version="1.0.0"
+	     path="CuteGod"
+	     >
+      <Author>Dylan R. E. Moonfire (contact@mfgames.com)</Author>
+      <Description>Cute God</Description>
+      <Configuration name="Debug">
+        <Options>
+          <CompilerDefines>DEBUG;TRACE</CompilerDefines>
+          <OptimizeCode>false</OptimizeCode>
+          <OutputPath>bin/Debug</OutputPath>
+          <DebugInformation>true</DebugInformation>
+          <SuppressWarnings>1595</SuppressWarnings>
+        </Options>
+      </Configuration>
+      <Configuration name="Release">
+        <Options>
+          <CompilerDefines>TRACE</CompilerDefines>
+          <OutputPath>bin/Release</OutputPath>
+          <OptimizeCode>true</OptimizeCode>
+          <DebugInformation>false</DebugInformation>
+          <SuppressWarnings>1595</SuppressWarnings>
+        </Options>
+      </Configuration>
+      <ReferencePath>..\\lib</ReferencePath>
+      <?if OS = "Win32" ?>
+      <ReferencePath>..\\lib\\net-2.0</ReferencePath>
+      <?else ?>
+      <ReferencePath>..\\lib\\mono-2.0</ReferencePath>
+      <?endif ?>
+      <Reference name="System" />
+      <Reference name="System.Drawing" />
+      <Reference name="System.Windows.Forms" />
+      <Reference name="System.Xml" />
+      <Reference name="MfGames.Sprite3" localCopy="true" />
+      <Reference name="MfGames.Sprite3.Backends" localCopy="true" />
+      <Reference name="MfGames.Sprite3.BooGameBE" localCopy="true" />
+      <Reference name="MfGames.Utility" localCopy="true" />
+      <Reference name="C5" localCopy="true" />
+      <Reference name="BooGame" localCopy="true" />
+      <Reference name="BooGame.Sdl" localCopy="true" />
+      <!-- debugging -->
+      <Reference name="BooGame.FreeGlut" localCopy="true" />
+      <Reference name="Nini" localCopy="true"/>
+      <Reference name="Tao.OpenGl" localCopy="true"/>
+      <Reference name="Tao.Sdl" localCopy="true"/>
+      <Reference name="Tao.FreeGlut" localCopy="true"/>
+      <Reference name="Tao.DevIl" localCopy="true"/>
+      <Reference name="Tao.PhysFs" localCopy="true"/>
+      <Reference name="Tao.FreeType" localCopy="true"/>
+
+      <Files>
+        <Match pattern="*.cs" recurse="true"/>
+        <Match path="Assets" pattern="*.png" 
+               buildAction="Content" copyToOutput="Always"/>
+        <Match path="Sounds" pattern="*.ogg" 
+               buildAction="Content" copyToOutput="Always"/>
+        <Match path="Sounds\\Background" pattern="*.ogg" 
+               buildAction="Content" copyToOutput="Always"/>
+
+        <Match pattern="credits.xml" buildAction="EmbeddedResource"/>
+        <Match pattern="sounds.xml" buildAction="EmbeddedResource"/>
+        <Match pattern="layouts.xml" buildAction="EmbeddedResource"/>
+        <Match pattern="penalties.xml" buildAction="EmbeddedResource"/>
+        <Match pattern="bonuses.xml" buildAction="EmbeddedResource"/>
+        
+	<?if OS = "Win32" ?>
+	<Match path="..\\lib\\win32deps" pattern="*.dll"
+	       buildAction="Content" copyToOutput="Always" />
+	<?else ?>
+	<Match path="..\\lib\\mono-2.0" pattern="*.config"
+	       buildAction="Content" copyToOutput="Always" />
+	<?endif ?>
+      </Files>
+    </Project>
+  </Solution>
+</Prebuild>
