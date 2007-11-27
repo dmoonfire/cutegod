@@ -18,7 +18,7 @@
    sodipodi:docbase="/home/dylan/src/mfgames/CuteGod/Assets/Blocks/Immobile"
    sodipodi:docname="Immobile B.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="/home/dylan/src/mfgames/Sprite3/Assets/PlanetCute/Custom/Dead Water Block 0.png"
+   inkscape:export-filename="/home/dylan/src/mfgames/CuteGod/Assets/Blocks/Immobile/Immobile B 3.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -1472,7 +1472,7 @@
      inkscape:groupmode="layer"
      id="layer7"
      inkscape:label="Top Runes 0"
-     style="display:inline">
+     style="display:none">
     <text
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:DarkArts BB"
@@ -1522,7 +1522,7 @@
      inkscape:groupmode="layer"
      id="layer10"
      inkscape:label="Top Runes 1"
-     style="display:inline">
+     style="display:none">
     <text
        sodipodi:linespacing="125%"
        id="text6383"
@@ -1572,7 +1572,7 @@
      inkscape:groupmode="layer"
      id="layer8"
      inkscape:label="Top Runes 2"
-     style="display:inline">
+     style="display:none">
     <text
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;opacity:0;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:DarkArts BB"
