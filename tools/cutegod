@@ -1,0 +1,114 @@
+#!/usr/bin/perl
+
+#
+# Setup
+#
+
+# Directives
+use strict;
+use warnings;
+
+# Modules
+
+# Variables
+my $VERBOSE = 2;
+
+#
+# Asset verification
+#
+
+#
+# .config processing
+#
+
+# Go through the config files
+print "* Checking .config files...\n" if $VERBOSE > 0;
+
+foreach my $config (glob("*.config"))
+{
+    # Report which file
+    print "  * Validating $config\n" if $VERBOSE > 1;
+
+    # Load in the entire config file
+    my @config = ();
+    my $changed = 0;
+    open CONFIG, "<$config" or die "Cannot open $config ($!)";
+
+    # Go through the file
+    while (<CONFIG>)
+    {
+	# Clean up the line
+	chomp;
+
+	# Look for a dllmap line
+	if (m@target=\"(.*?)\"@)
+	{
+	    # Save the before and after
+	    my $before = $`;
+	    my $after = "$'";
+	    my $so = $1;
+
+	    # Make some noise
+	    print "    * dllmap: $so\n" if $VERBOSE > 2;
+
+	    # See if the file exists
+	    if (! -f "/usr/lib/$so")
+	    {
+		# Make some noise about the status
+		print STDERR "! $so doesn't exist! Remapping...\n";
+		
+		# Try just removing the last number and try it
+		my $son = $so;
+		my $found = 0;
+		$son =~ s/\d+$//;
+
+		foreach my $sol (glob("/usr/lib/$son*"))
+		{
+		    # Try this file
+		    next if ($sol !~ m@/usr/lib/$son[0-9]+$@);
+		    print STDERR "  ! Trying $sol\n";
+
+		    # Update it
+		    $so = $sol;
+		    $so =~ s@/usr/lib/@@;
+		    $changed = 1;
+		    $found = 1;
+		}
+
+		# If we haven't been found
+		if (!$found)
+		{
+		    print STDERR "  ! Cannot find a replacement .so file!\n";
+		    exit 1;
+		}
+	    }
+
+	    # Rebuild the line
+	    $_ = "$before" . "target=\"$so\"$after";
+	}
+
+	# Add the line
+	push @config, $_;
+    }
+
+    # Close the file
+    close CONFIG;
+
+    # Write out the file
+    if ($changed)
+    {
+	# See if we can write to it
+	print STDERR "  ! Updating the config file, changed...\n";
+	open CONFIG, ">$config" or die "Cannot write $config ($!)";
+	print CONFIG join("\n", @config), "\n";
+	close CONFIG;
+    }
+}
+
+#
+# Executable
+#
+
+# Start up the executable
+print "* Welcome to CuteGod!\n" if $VERBOSE > 0;
+system("/usr/bin/mono", "CuteGod.exe");
