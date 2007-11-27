@@ -2,18 +2,15 @@ BOOGAME_SOURCE = $(HOME)/src/boogame
 LIBRARIES_SOURCE = $(HOME)/src/mfgames/Libraries/
 UTILITY_SOURCE = $(LIBRARIES_SOURCE)/MfGames.Utility/bin/Debug/
 
-all: refresh compile
+all: compile
 
-compile: CuteGod/layouts.xml
+compile:
 	# Compile the code
 	mono tools/prebuild.exe /target nant \
 		/file prebuild.xml /FRAMEWORK MONO_2_0
 	fnant build-debug
 
-	# Copy the assets
-	rsync -rC -f '- .svn' Assets/ CuteGod/bin/Debug/
-	rsync -rC -f '- .svn' Assets/ BooGameDemos/bin/Debug/
-
+#CuteGod/layouts.xml
 update:
 	tools/create-sound-control.pl CuteGod
 	tools/create-credits.pl .
