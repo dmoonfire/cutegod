@@ -18,7 +18,7 @@
    sodipodi:docbase="/home/dylan/src/mfgames/CuteGod/Assets/Blocks/Dead Water"
    sodipodi:docname="Dead Water Block.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
-   inkscape:export-filename="/home/dylan/src/mfgames/Sprite3/Assets/PlanetCute/Custom/Dead Water Block 0.png"
+   inkscape:export-filename="/home/dylan/src/mfgames/CuteGod/Assets/Blocks/Dead Water Block 2.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90">
   <defs
@@ -1415,6 +1415,24 @@
        fx="55.639378"
        fy="110.29758"
        r="56.38652" />
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath2422">
+      <path
+         sodipodi:nodetypes="cccccccccc"
+         id="path2424"
+         d="M 97.731339,54.628064 C 100.20255,54.643698 102.20417,56.657661 102.20417,59.136801 L 102.20417,159.39984 C 102.11854,161.80346 100.14801,163.72422 97.731339,163.73951 C 97.725286,163.73994 15.784145,163.73291 15.785709,163.73951 C 13.3558,163.73951 11.370718,161.81306 11.284745,159.39984 C 11.284736,125.9225 11.284745,92.445094 11.284745,58.967723 C 11.375873,56.559214 13.359182,54.628065 15.785709,54.628064 L 97.703208,54.628064 L 97.731339,54.628064 z "
+         style="opacity:1;fill:#67953c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.99106646;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;display:inline" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath2426">
+      <path
+         sodipodi:nodetypes="cccccccccc"
+         id="path2428"
+         d="M 5.415647,50.509694 C 2.697314,50.526891 0.495533,52.74225 0.495533,55.469304 L 0.495533,165.75865 C 0.589727,168.40263 2.757304,170.51546 5.415647,170.53228 C 5.422305,170.53276 95.55756,170.52502 95.55584,170.53228 C 98.22874,170.53228 100.41233,168.41319 100.5069,165.75865 C 100.50691,128.93357 100.5069,92.108427 100.5069,55.283319 C 100.40666,52.633959 98.22502,50.509695 95.55584,50.509694 L 5.446591,50.509694 L 5.415647,50.509694 z "
+         style="opacity:1;fill:#67953c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.99106646;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;display:inline" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -1430,10 +1448,10 @@
      inkscape:cx="50.5"
      inkscape:cy="67.6875"
      inkscape:document-units="px"
-     inkscape:current-layer="layer9"
+     inkscape:current-layer="layer10"
      inkscape:window-width="1079"
      inkscape:window-height="974"
-     inkscape:window-x="0"
+     inkscape:window-x="593"
      inkscape:window-y="0"
      showguides="true"
      inkscape:guide-bbox="true"
@@ -1490,10 +1508,12 @@
          style="opacity:1;fill:#67953c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.99106646;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;display:inline"
          d="M 5.415647,50.509694 C 2.697314,50.526891 0.495533,52.74225 0.495533,55.469304 L 0.495533,165.75865 C 0.589727,168.40263 2.757304,170.51546 5.415647,170.53228 C 5.422305,170.53276 95.55756,170.52502 95.55584,170.53228 C 98.22874,170.53228 100.41233,168.41319 100.5069,165.75865 C 100.50691,128.93357 100.5069,92.108427 100.5069,55.283319 C 100.40666,52.633959 98.22502,50.509695 95.55584,50.509694 L 5.446591,50.509694 L 5.415647,50.509694 z "
          id="path3346"
-         sodipodi:nodetypes="cccccccccc" />
+         sodipodi:nodetypes="cccccccccc"
+         clip-path="url(#clipPath2426)" />
       <g
          id="g3379"
-         transform="matrix(-1.1,0,0,1.1,112.92012,-9.5811768)">
+         transform="matrix(-1.1,0,0,1.1,112.92012,-9.5811768)"
+         clip-path="url(#clipPath2422)">
         <path
            d="M 34.149902 71.096924 A 21.082764 21.082764 0 1 1  -8.015625,71.096924 A 21.082764 21.082764 0 1 1  34.149902 71.096924 z"
            sodipodi:ry="21.082764"
@@ -1654,7 +1674,7 @@
        inkscape:groupmode="layer"
        id="layer1"
        inkscape:label="Ripples 0"
-       style="display:inline">
+       style="display:none">
       <path
          style="opacity:0.2;fill:url(#radialGradient3424);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.35433072;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
          d="M -8.9924209,81.601669 C 6.0048857,79.80751 12.007606,56.648783 28.878076,60.26147 C 44.865382,64.495451 60.145876,60.108964 73.571077,49.998609 C 83.881156,43.564834 108.90909,42.485411 106.5439,61.62416 C 99.009261,77.932102 78.019691,71.601191 64.557512,75.895424 C 51.282628,78.829294 37.930774,82.872639 24.364441,79.496959 C 14.017201,77.801482 -1.2745792,89.329853 -4.2424288,87.659125 C -5.8140915,86.107346 -9.6902189,84.648579 -8.9924209,81.601669 z "
@@ -1690,7 +1710,7 @@
        inkscape:groupmode="layer"
        id="layer4"
        inkscape:label="Ripples 2"
-       style="display:none">
+       style="display:inline">
       <path
          style="opacity:0.2;fill:url(#radialGradient2443);fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.35433072;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;display:inline"
          d="M -8.9924209,109.60167 C 6.0048857,107.80751 12.007606,84.64878 28.878076,88.26147 C 44.865382,92.49545 60.145876,88.10896 73.571077,77.99861 C 83.881156,71.56483 108.90909,70.48541 106.5439,89.62416 C 99.009261,105.9321 78.019691,99.60119 64.557512,103.89542 C 51.282628,106.82929 37.930774,110.87264 24.364441,107.49696 C 14.017201,105.80148 -1.2745792,117.32985 -4.2424288,115.65913 C -5.8140915,114.10735 -9.6902189,112.64858 -8.9924209,109.60167 z "
@@ -1719,7 +1739,7 @@
        inkscape:groupmode="layer"
        id="layer9"
        inkscape:label="Water Block Side 0"
-       style="display:inline">
+       style="display:none">
       <path
          sodipodi:type="arc"
          style="opacity:0.8;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#49420b;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;display:inline"
@@ -1851,7 +1871,7 @@
        inkscape:groupmode="layer"
        id="layer6"
        inkscape:label="Water Block Side 2"
-       style="display:none">
+       style="display:inline">
       <path
          sodipodi:type="arc"
          style="opacity:0.8;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#49420b;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;display:inline"
