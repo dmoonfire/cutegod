@@ -1,0 +1,4 @@
+2007-11-29 Dylan R. E. Moonfire <contact@mfgames.com>
+
+	* Updated a cutegod script to run the game and some sanity checks
+	on the Linux environment before running.

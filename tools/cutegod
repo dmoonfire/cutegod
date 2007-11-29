@@ -18,6 +18,22 @@ my $VERBOSE = 2;
 #
 
 #
+# Application Verification
+#
+
+unless (open PIPE, "mono -V |")
+{
+    print STDERR "! Cannot find `mono` to execute the game.\n";
+    exit 1;
+}
+
+my $mono_version = <PIPE>;
+chomp $mono_version;
+close PIPE;
+
+print "* Using mono: $mono_version\n";
+
+#
 # .config processing
 #
 
@@ -47,6 +63,9 @@ foreach my $config (glob("*.config"))
 	    my $before = $`;
 	    my $after = "$'";
 	    my $so = $1;
+
+	    # Ignore some libraries since we don't use them
+	    next if $so =~ /SDL_gfx/;
 
 	    # Make some noise
 	    print "    * dllmap: $so\n" if $VERBOSE > 2;
@@ -79,6 +98,7 @@ foreach my $config (glob("*.config"))
 		if (!$found)
 		{
 		    print STDERR "  ! Cannot find a replacement .so file!\n";
+		    print STDERR "  ! You may need to install a library.\n";
 		    exit 1;
 		}
 	    }
