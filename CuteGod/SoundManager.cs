@@ -296,7 +296,7 @@ namespace CuteGod
         public void BlockLanded(object sender, BlockStackEventArgs args)
         {
 			// Make sure we don't have a character
-			if (args.Block.DrawableName.Contains("Character"))
+			if (args.Block.Sprite.ID.Contains("Character"))
 				return;
 
 			// Play a sound

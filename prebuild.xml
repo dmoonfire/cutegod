@@ -84,12 +84,6 @@
 
       <Files>
         <Match pattern="*.cs" recurse="true"/>
-        <Match path="Assets" pattern="*.png" 
-               buildAction="Content" copyToOutput="Always"/>
-        <Match path="Sounds" pattern="*.ogg" 
-               buildAction="Content" copyToOutput="Always"/>
-        <Match path="Sounds\\Background" pattern="*.ogg" 
-               buildAction="Content" copyToOutput="Always"/>
 
         <Match pattern="credits.xml" buildAction="EmbeddedResource"/>
         <Match pattern="sounds.xml" buildAction="EmbeddedResource"/>

@@ -70,6 +70,7 @@ namespace CuteGod
                 // Fallback error
                 System.Windows.Forms.MessageBox.Show("There was an error: "
                     + e.Message);
+				throw e;
             }
         }
 
@@ -81,8 +82,8 @@ namespace CuteGod
             // Set up the game and backend
 			Game.Backend = new BooGameBackend();
 
-			// Load the asset stubs into memory
-			AssetLoader.Queue();
+			// Load the initial assets into memory
+			AssetLoader.Instance.Queue();
 
             // Initialize the sound system
             Game.Sound.Initialize();

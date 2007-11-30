@@ -2,3 +2,10 @@
 
 	* Updated a cutegod script to run the game and some sanity checks
 	on the Linux environment before running.
+
+	* Massive organization on the file structures, including splitting
+	out CuteGod from the Sprite3 library. Also updating for changes in
+	the Sprite3 libraries to handle animation.
+
+	* Changed asset loading to be based on dynamic scanning of the
+	directories instead of a hard-coded list of files.

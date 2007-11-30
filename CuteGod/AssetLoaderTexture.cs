@@ -2,6 +2,7 @@ using BooGame;
 using BooGame.Video;
 using MfGames.Sprite3;
 using MfGames.Sprite3.BooGameBE;
+using System;
 
 namespace CuteGod
 {
@@ -58,11 +59,8 @@ namespace CuteGod
             Texture texture = Core.Backend.CreateTexture(filename);
             TextureDrawable drawable = new TextureDrawable(texture);
 
-            // Load the texture into the drawable manager
-			if (hasColor)
-				Game.DrawableManager.Register(key, drawable, color);
-			else
-				Game.DrawableManager.Register(key, drawable);
+			// Set the drawable in the cache
+			AssetLoader.Instance.Drawables[key] = drawable;
 		}
 		#endregion
 	}

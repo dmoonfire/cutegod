@@ -30,12 +30,12 @@ namespace CuteGod.Play
             // Create the titles
             text = new TextDrawableSprite(Game.GetFont(TitleFontSize),
 				"Credits");
-            text.Color = Color.White;
+            text.Tint = Color.White;
 			text.Alignment = ContentAlignment.TopLeft;
             sprites.Add(text);
 
             category = new TextDrawableSprite(Game.GetFont(FontSize));
-            category.Color = Color.White;
+            category.Tint = Color.White;
 			category.Alignment = ContentAlignment.TopRight;
             sprites.Add(category);
         }

@@ -37,7 +37,7 @@ namespace CuteGod.Play
 
             // Create the block viewport
             blockViewport =
-                new BlockViewport(Prayer.Board, Game.DrawableManager);
+                new BlockViewport(Prayer.Board, AssetLoader.Instance);
             blockViewport.Size = blockViewport.Extents.Size;
             blockViewport.ClipContents = false;
             Viewport.Add(blockViewport);
@@ -63,12 +63,13 @@ namespace CuteGod.Play
 						block.Data = false;
 
 						// Figure out the position
-                        if (block.Position != 0)
+                        if (block.BottomPosition != 0)
                         {
                             // For the top blocks
-                            block.Position *=
+                            block.BottomPosition *=
 								Constants.PrayerDroppingMultiplier;
-							block.Position += Entropy.NextFloat(-0.5f, 0.5f);
+							block.BottomPosition +=
+								Entropy.NextFloat(-0.5f, 0.5f);
                             block.IsMoving = true;
                             block.Mass = Constants.PrayerBlockMass;
                             block.Vector = Constants.PrayerDroppedVector;

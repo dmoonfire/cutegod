@@ -1,5 +1,9 @@
 using BooGame.Video;
 using C5;
+using MfGames.Sprite3;
+using MfGames.Sprite3.Backends;
+using MfGames.Utility;
+using System;
 using System.Drawing;
 
 namespace CuteGod
@@ -10,14 +14,34 @@ namespace CuteGod
 	/// through various modes with reflection to enable a mode to
 	/// query the status.
 	/// </summary>
-	public static class AssetLoader
+	public class AssetLoader
+	: Logable, ISpriteFactory
 	{
+		#region Singleton
+		private static AssetLoader instance;
+
+		/// <summary>
+		/// Contains the singleton instance for this loader.
+		/// </summary>
+		public static AssetLoader Instance
+		{
+			get
+			{
+				// Make sure we are created
+				if (instance == null)
+					instance = new AssetLoader();
+
+				return instance;
+			}
+		}
+		#endregion
+
 		#region Default Assets
 		/// <summary>
 		/// Function to queue up all the assets required for the
 		/// functioning of the system.
 		/// </summary>
-		public static void Queue()
+		public void Queue()
 		{
 			// Main menu elements
 			QueueDrawable("Assets/quit.png");
@@ -27,6 +51,9 @@ namespace CuteGod
 			QueueDrawable("Assets/new-game.png");
 			QueueDrawable("Assets/resume-game.png");
 			QueueDrawable("Assets/settings.png");
+
+#if REMOVED
+			// Load up the drawable sets
 
             // Set up the core blocks
             QueueDrawable("PlanetCute/Custom/Immobile Block.png",
@@ -63,26 +90,46 @@ namespace CuteGod
             QueueDrawable("PlanetCute/Ramp North.png", Color.White);
             QueueDrawable("PlanetCute/Ramp South.png", Color.White);
             QueueDrawable("PlanetCute/Ramp West.png", Color.White);
-            QueueDrawable("PlanetCute/Door Tall Closed.png", Color.White);
-            QueueDrawable("PlanetCute/Door Tall Open.png", Color.White);
-            QueueDrawable("PlanetCute/Rock.png", Color.White);
-            QueueDrawable("PlanetCute/Roof East.png", Color.White);
-            QueueDrawable("PlanetCute/Roof North East.png", Color.White);
-            QueueDrawable("PlanetCute/Roof North West.png", Color.White);
-            QueueDrawable("PlanetCute/Roof North.png", Color.White);
-            QueueDrawable("PlanetCute/Roof South East.png", Color.White);
-            QueueDrawable("PlanetCute/Roof South West.png", Color.White);
-            QueueDrawable("PlanetCute/Roof South.png", Color.White);
-            QueueDrawable("PlanetCute/Roof West.png", Color.White);
-            QueueDrawable("PlanetCute/Stone Block Tall.png", Color.White);
-            QueueDrawable("PlanetCute/Stone Block.png", Color.White);
-            QueueDrawable("PlanetCute/Tree Short.png", Color.White);
-            QueueDrawable("PlanetCute/Tree Tall.png", Color.White);
-            QueueDrawable("PlanetCute/Tree Ugly.png", Color.White);
-            QueueDrawable("PlanetCute/Wall Block Tall.png", Color.White);
-            QueueDrawable("PlanetCute/Wall Block.png", Color.White);
-            QueueDrawable("PlanetCute/Window Tall.png", Color.White);
-            QueueDrawable("PlanetCute/Wood Block.png", Color.White);
+            QueueDrawable("PlanetCute/Door Tall Closed.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Door Tall Open.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Rock.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Roof East.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Roof North East.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Roof North West.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Roof North.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Roof South East.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Roof South West.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Roof South.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Roof West.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Stone Block Tall.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Stone Block.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Tree Short.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Tree Tall.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Tree Ugly.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Wall Block Tall.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Wall Block.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Window Tall.png",
+				Color.White);
+            QueueDrawable("PlanetCute/Wood Block.png",
+				Color.White);
 
             // Characters
             QueueDrawable("PlanetCute/Character Boy.png");
@@ -126,20 +173,21 @@ namespace CuteGod
             QueueDrawable("PlanetCute/Selector.png", Color.Yellow);
             QueueDrawable("PlanetCute/Custom/Invalid Selector.png",
                 Color.Yellow);
+#endif
 		}
 		#endregion
 
 		#region Queues
-		private static double secondsRemaining = 0.1;
-		private static double loadRate = 0.1;
-		private static int queueCount;
-		private static LinkedList<IAssetLoader> queue =
+		private double secondsRemaining = 0.1;
+		private double loadRate = 0.1;
+		private int queueCount;
+		private LinkedList<IAssetLoader> queue =
 			new LinkedList<IAssetLoader>();
 
 		/// <summary>
 		/// Returns true if the assets have been loaded.
 		/// </summary>
-		public static bool IsFinishedLoading
+		public bool IsFinishedLoading
 		{
 			get { return queue.Count == 0; }
 		}
@@ -147,7 +195,7 @@ namespace CuteGod
 		/// <summary>
 		/// Contains the rate to load textures.
 		/// </summary>
-		public static double LoadRate
+		public double LoadRate
 		{
 			get { return loadRate; }
 			set { loadRate = value; }
@@ -157,15 +205,18 @@ namespace CuteGod
 		/// Returns a double with the amount remaining to be
 		/// processed. This will be 0 when it is done.
 		/// </summary>
-		public static double Pending
+		public double Pending
 		{
-			get { return (double) queue.Count / (double) queueCount; }
+			get
+			{
+				return (double) queue.Count / (double) queueCount;
+			}
 		}
 
 		/// <summary>
 		/// Processes one element from the queue.
 		/// </summary>
-		public static void ProcessOne()
+		public void ProcessOne()
 		{
 			// Ignore empty queues
 			if (queue.Count == 0)
@@ -181,7 +232,7 @@ namespace CuteGod
 		/// is implemented as a first in/first out approach to
 		/// loading.
 		/// </summary>
-		public static void Queue(IAssetLoader loader)
+		public void Queue(IAssetLoader loader)
 		{
 			queue.InsertLast(loader);
 			queueCount++;
@@ -191,7 +242,7 @@ namespace CuteGod
 		/// Attempts to load an asset, spreading it out over time to
 		/// reduce the load on the server.
 		/// </summary>
-		public static void Update(double secondsSinceLastUpdate)
+		public void Update(double secondsSinceLastUpdate)
 		{
 			// Lower the counter and finish if we are still delaying
 			secondsRemaining -= secondsSinceLastUpdate;
@@ -210,7 +261,7 @@ namespace CuteGod
         /// Queues a single drawable into the system.
         /// </summary>
         /// <param name="path"></param>
-        private static void QueueDrawable(string path)
+        private void QueueDrawable(string path)
         {
 			Queue(new AssetLoaderTexture(path));
         }
@@ -222,10 +273,47 @@ namespace CuteGod
         /// <param name="name"></param>
         /// <param name="color"></param>
         /// <param name="height"></param>
-        private static void QueueDrawable(string path, ColorF color)
+        private void QueueDrawable(string path, ColorF color)
         {
 			Queue(new AssetLoaderTexture(path, color));
         }
+		#endregion
+
+		#region Sprite Creation
+		private HashDictionary<string, IDrawable> drawables =
+			new HashDictionary<string, IDrawable> ();
+
+		/// <summary>
+		/// Contains a hash of a string to drawable mapping.
+		/// </summary>
+		public IDictionary<string, IDrawable> Drawables
+		{
+			get { return drawables; }
+		}
+
+		/// <summary>
+		/// Loads a single drawable and returns it.
+		/// </summary>
+		public IDrawable CreateDrawable(string key)
+		{
+			// See if we have the drawable
+			if (drawables.Contains(key))
+				return drawables[key];
+
+			// Otherwise, attempt to load it
+
+			// We can't find it
+			throw new Exception("Cannot load a drawable: " + key);
+		}
+
+		/// <summary>
+		/// Constructs a sprite from the given key, caching the
+		/// drawable data if needed.
+		/// </summary>
+		public ISprite CreateSprite(string key)
+		{
+			throw new Exception("Cannot create sprite of key: " + key);
+		}
 		#endregion
 	}
 }

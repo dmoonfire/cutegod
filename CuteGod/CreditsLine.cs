@@ -20,7 +20,7 @@ namespace CuteGod
         {
             // Set up the sprites
             Sprite = new TextDrawableSprite(Game.GetFont(FontSize));
-            Sprite.Color = Color.White;
+            Sprite.Tint = Color.White;
             Sprite.Alignment = ContentAlignment.TopLeft;
         }
         #endregion
@@ -60,7 +60,7 @@ namespace CuteGod
                 {
                     // Figure out the color
                     double fadeIn = displayed / OffsetSH;
-                    Sprite.Color =
+                    Sprite.Tint =
                         Color.FromArgb((int) (fadeIn * 255), Color.White);
 
                     // Figure out the position
@@ -79,7 +79,7 @@ namespace CuteGod
                         Math.Min(1,
                             Math.Abs(displayed - (SecondsToLive - OffsetSH)));
                     fadeOut = 1 - (fadeOut / OffsetSH);
-                    Sprite.Color =
+                    Sprite.Tint =
                         Color.FromArgb((int) (fadeOut * 255), Color.White);
 
                     // Figure out the position	
@@ -90,7 +90,7 @@ namespace CuteGod
                 else
                 {
                     // Set the color
-                    Sprite.Color = Color.White;
+                    Sprite.Tint = Color.White;
 
                     // Set the position
                     Sprite.Point = Point;

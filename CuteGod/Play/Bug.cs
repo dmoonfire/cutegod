@@ -17,7 +17,7 @@ namespace CuteGod.Play
         /// Create an empty bug.
         /// </summary>
         public Bug()
-            : base(Constants.BugBlockName)
+            : base(AssetLoader.Instance.CreateSprite(Constants.BugBlockName))
         {
             // Set the block information
             Height = 0;
@@ -86,21 +86,21 @@ namespace CuteGod.Play
 						continue;
 
 					// Check for invalid block
-					if (block.DrawableName == Constants.ImmobileBlockName &&
+					if (block.Sprite.ID == Constants.ImmobileBlockName &&
 						block.TopPosition > position)
 					{
 						position = block.TopPosition;
 					}
 
 					// Check the block
-					if (block.Position > b.Position)
+					if (block.BottomPosition > b.BottomPosition)
 						b = block;
 				}
 
 				// Bounce this one
 				b.Vector += Constants.BugBounceVector;
 				b.Mass = Constants.BlockMass;
-				Position = position;
+				BottomPosition = position;
 			}
 
 			// Set the visbility

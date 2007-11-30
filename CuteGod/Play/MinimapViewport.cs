@@ -18,7 +18,7 @@ namespace CuteGod.Play
         /// values.
         /// </summary>
         public MinimapViewport(PlayMode playMode)
-            : base(Game.State.Board, Game.DrawableManager)
+            : base(Game.State.Board)
         {
             // Save the value
             this.playMode = playMode;

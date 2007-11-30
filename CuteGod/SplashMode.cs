@@ -110,7 +110,7 @@ namespace CuteGod
 		{
 			// Lower the display amount
 			secondsRemaining -= args.SecondsSinceLastUpdate;
-			AssetLoader.Update(args.SecondsSinceLastUpdate);
+			AssetLoader.Instance.Update(args.SecondsSinceLastUpdate);
 
 			// If this is negative switch to the next mode
 			if (secondsRemaining < 0)

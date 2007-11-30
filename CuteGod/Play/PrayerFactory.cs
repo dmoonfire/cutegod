@@ -39,7 +39,7 @@ namespace CuteGod.Play
                 {
                     // Load the board
                     Board board = new Board();
-                    board.Read(xml);
+                    board.Read(xml, AssetLoader.Instance);
                     boards.Add(board);
                 }
             }

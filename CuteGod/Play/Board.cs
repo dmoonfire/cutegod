@@ -132,7 +132,7 @@ namespace CuteGod.Play
                         continue;
 
                     // Set the position based on the count
-                    block.Position =
+                    block.BottomPosition =
                         2f + (float) stack.Count * Constants.PlacementSpacing;
                     block.Vector = Constants.DroppedVector;
                     block.IsMoving = true;
@@ -173,8 +173,9 @@ namespace CuteGod.Play
                     stack.IsInInitialPlacement = true;
 
                     // Set a new immobile block into place
-                    Block block = new Block(Constants.ImmobileBlockName);
-                    block.Position = 0;
+                    Block block = new Block(AssetLoader.Instance
+						.CreateSprite(Constants.ImmobileBlockName));
+                    block.BottomPosition = 0;
                     block.Height = 1;
 
                     // Add it to the stack
@@ -197,7 +198,7 @@ namespace CuteGod.Play
             Game.State.Prayers.Add(prayer);
 
             BlockStack ps = Game.State.Board[oldColumns + px, py];
-            prayer.Position = ps.TopPosition;
+            prayer.BottomPosition = ps.TopPosition;
             prayer.Vector = Constants.DroppedVector;
             ps.Add(prayer);
         }
@@ -231,7 +232,7 @@ namespace CuteGod.Play
         public Block CreateBlock(string key)
         {
             // Create the basic block
-            Block block = new Block(key);
+            Block block = new Block(AssetLoader.Instance.CreateSprite(key));
 
             // Set up some of the default properties
             block.CastsShadows = true;
@@ -255,7 +256,7 @@ namespace CuteGod.Play
 				{
 					// Grab the top and check the name
 					if (stack.Count > 0 && 
-						stack.TopBlock.DrawableName == drawableName)
+						stack.TopBlock.Sprite.ID == drawableName)
 					{
 						return true;
 					}
@@ -275,7 +276,7 @@ namespace CuteGod.Play
         public static bool IsGroundBlock(Block block)
         {
             // Get the name
-            string name = block.DrawableName;
+            string name = block.Sprite.ID;
 
             // Return if it contains the appropriate name
             return name.Contains("Water") ||
@@ -290,7 +291,7 @@ namespace CuteGod.Play
         /// <returns></returns>
         public static bool IsImmobileBlock(Block block)
         {
-            return block.DrawableName == Constants.ImmobileBlockName;
+            return block.Sprite.ID == Constants.ImmobileBlockName;
         }
 
 		/// <summary>
@@ -311,9 +312,10 @@ namespace CuteGod.Play
 					// Grab the block
 					Block b = stack.TopBlock;
 
-					if (b.DrawableName == searchName)
+					if (b.Sprite.ID == searchName)
 					{
-						b.DrawableName = replaceName;
+						b.Sprite = AssetLoader.Instance
+							.CreateSprite(replaceName);
 					}
 				}
 			}
@@ -398,16 +400,16 @@ namespace CuteGod.Play
 					Block bTop = bStack.TopBlock;
 					
 					// Compare the drawable names
-					if (pBottom.DrawableName == "Invisible")
+					if (pBottom.Sprite.ID == "Invisible")
 					{
 						// Invisible always matches
 						continue;
 					}
 
-					if (bTop.DrawableName != pBottom.DrawableName)
+					if (bTop.Sprite.ID != pBottom.Sprite.ID)
 					{
 						Debug("  Name rejected prayer: {0} v. {1}",
-							bTop.DrawableName, pBottom.DrawableName);
+							bTop.Sprite.ID, pBottom.Sprite.ID);
 						return false;
 					}
 							
@@ -418,10 +420,10 @@ namespace CuteGod.Play
 					}
 					else
 					{
-						if (first.Position != bTop.Position)
+						if (first.BottomPosition != bTop.BottomPosition)
 						{
 							Debug("  Position rejected prayer: {0} v {1}",
-								first.Position, bTop.Position);
+								first.BottomPosition, bTop.BottomPosition);
 							return false;
 						}
 					}
@@ -497,22 +499,25 @@ namespace CuteGod.Play
                     foreach (Block block in stack0)
                     {
 						// Positions 0's are sealed
-                        if (block.Position == 0)
+                        if (block.BottomPosition == 0)
 						{
 							// Seal it to change how it looks on the
 							// mini map
-							switch (block.DrawableName)
+							switch (block.Sprite.ID)
 							{
 							case "Water Block":
-								bBlock.DrawableName = "Sealed Water";
+								bBlock.Sprite =	AssetLoader.Instance
+									.CreateSprite("Sealed Water");
 								bBlock.Data = false;
 								break;
 							case "Grass Block":
-								bBlock.DrawableName = "Sealed Grass";
+								bBlock.Sprite =	AssetLoader.Instance
+									.CreateSprite("Sealed Grass");
 								bBlock.Data = false;
 								break;
 							case "Dirt Block":
-								bBlock.DrawableName = "Sealed Dirt";
+								bBlock.Sprite =	AssetLoader.Instance
+									.CreateSprite("Sealed Dirt");
 								bBlock.Data = false;
 								break;
 							case "Invisible":
@@ -520,7 +525,7 @@ namespace CuteGod.Play
 								break;
 							default:
 								Error("Cannot identify base block: {0}",
-									block.DrawableName);
+									block.Sprite.ID);
 								break;
 							}
 						}
@@ -529,7 +534,7 @@ namespace CuteGod.Play
 							// Move it over to the new one and add the position
 							// to the bottom, minus one because we ignore the
 							// bottom row
-							block.Position += position -1f;
+							block.BottomPosition += position -1f;
 							stack.Add(new Block(block));
 						}                   
 					}
@@ -577,7 +582,7 @@ namespace CuteGod.Play
 					foreach (Block block in stack)
 					{
 						// Don't bother if we already have a bug here
-						if (block.DrawableName == Constants.BugBlockName)
+						if (block.Sprite.ID == Constants.BugBlockName)
 						{
 						}
 
@@ -588,7 +593,7 @@ namespace CuteGod.Play
 						}
 
 						// If we have an immobile, keep it
-						else if (block.DrawableName ==
+						else if (block.Sprite.ID ==
 							Constants.ImmobileBlockName)
 						{
 							immobilePosition =
@@ -609,7 +614,7 @@ namespace CuteGod.Play
 						continue;
 
 					// Put the bug in
-					bug.Position = immobilePosition;
+					bug.BottomPosition = immobilePosition;
 					bug.X = col;
 					bug.Y = row;
 					bug.BlockStack = stack;

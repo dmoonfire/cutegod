@@ -38,30 +38,29 @@ namespace CuteGod.Play
             sprites = new SpriteViewport();
 
             // Create the heart and star icons
-            heartSprite = new DrawableSprite(Game.DrawableManager["Heart"]);
+            heartSprite = AssetLoader.Instance.CreateSprite("Heart");
             sprites.Add(heartSprite);
 
             heartText = new TextDrawableSprite(Game.GetFont(FullTextSize));
-            heartText.Color = Constants.HeartColor;
+            heartText.Tint = Constants.HeartColor;
             heartText.Text = Game.State.Hearts.ToString();
 			heartText.Alignment = ContentAlignment.MiddleLeft;
             sprites.Add(heartText);
 
-            starSprite = new DrawableSprite(Game.DrawableManager["Star"]);
+            starSprite = AssetLoader.Instance.CreateSprite("Star");
             sprites.Add(starSprite);
 
             starText = new TextDrawableSprite(Game.GetFont(FullTextSize));
-            starText.Color = Constants.StarColor;
+            starText.Tint = Constants.StarColor;
             starText.Text = Game.State.Stars.ToString();
 			starText.Alignment = ContentAlignment.MiddleLeft;
             sprites.Add(starText);
 
-            chestSprite =
-				new DrawableSprite(Game.DrawableManager[ChestDrawableName]);
+            chestSprite = AssetLoader.Instance.CreateSprite(ChestDrawableName);
             sprites.Add(chestSprite);
 
             chestText = new TextDrawableSprite(Game.GetFont(FullTextSize));
-            chestText.Color = Constants.ChestColor;
+            chestText.Tint = Constants.ChestColor;
             chestText.Text = "0";
 			chestText.Alignment = ContentAlignment.MiddleLeft;
             sprites.Add(chestText);
@@ -74,7 +73,7 @@ namespace CuteGod.Play
 			// Add the text elements
             subtitle = new TextDrawableSprite(
 				Game.GetFont(NewFontSize), "");
-            subtitle.Color = Color.FromArgb(128, Color.White);
+            subtitle.Tint = Color.FromArgb(128, Color.White);
 			subtitle.Alignment = ContentAlignment.TopCenter;
 			subtitle.Visible = false;
             viewport.Add(subtitle);
@@ -82,7 +81,7 @@ namespace CuteGod.Play
 			// Create the title text
             title = new TextDrawableSprite(
 				Game.GetFont(TitleFontSize), "");
-            title.Color = Color.White;
+            title.Tint = Color.White;
 			title.Alignment = ContentAlignment.TopCenter;
 			title.Visible = false;
             viewport.Add(title);
@@ -90,7 +89,7 @@ namespace CuteGod.Play
 			// Create the title text
             text = new TextDrawableSprite(
 				Game.GetFont(DescriptionFontSize), "");
-            text.Color = Color.White;
+            text.Tint = Color.White;
 			text.Alignment = ContentAlignment.TopCenter;
             viewport.Add(text);
 		}
@@ -163,7 +162,7 @@ namespace CuteGod.Play
 
 		#region Properties
         private SpriteViewport sprites, viewport;
-        private DrawableSprite heartSprite, starSprite, chestSprite;
+        private ISprite heartSprite, starSprite, chestSprite;
         private TextDrawableSprite heartText, starText, chestText;
 		private TextDrawableSprite subtitle, title, text;
 		private int chestCounter;
@@ -179,7 +178,7 @@ namespace CuteGod.Play
 			get { return "Chest Closed"; }
 		}
 
-		protected DrawableSprite ChestSprite
+		protected ISprite ChestSprite
 		{
 			get { return chestSprite; }
 		}

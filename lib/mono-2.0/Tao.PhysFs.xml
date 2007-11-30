@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>/home/dyyh/data/tao/src/Tao.PhysFs/bin/Release/Tao.PhysFs</name>
+        <name>/usr/local/src/taoframework/src/Tao.PhysFs/bin/Release/Tao.PhysFs</name>
     </assembly>
     <members>
         <member name="T:Tao.PhysFs.Fs">

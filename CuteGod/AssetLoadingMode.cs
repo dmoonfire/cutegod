@@ -27,13 +27,13 @@ namespace CuteGod.Play
             // Create the game over text
             text = new TextDrawableSprite(Game.GetFont(FontSize),
 				"Loading");
-            text.Color = Color.White;
+            text.Tint = Color.White;
 			text.Alignment = ContentAlignment.MiddleCenter;
             sprites.Add(text);
 
             text2 = new TextDrawableSprite(Game.GetFont(SmallFontSize),
 				"100%");
-            text2.Color = Color.White;
+            text2.Tint = Color.White;
 			text2.Alignment = ContentAlignment.BottomLeft;
             sprites.Add(text2);
         }
@@ -46,7 +46,7 @@ namespace CuteGod.Play
         public void Activate()
         {
 			// Cut the load rate to as fast as possible
-			AssetLoader.LoadRate = 0;
+			AssetLoader.Instance.LoadRate = 0;
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace CuteGod.Play
         public void Update(UpdateArgs args)
         {
 			// See if we are done
-			if (AssetLoader.IsFinishedLoading)
+			if (AssetLoader.Instance.IsFinishedLoading)
 			{
 				//Game.GameMode = new NewGameMode();
 				Game.GameMode = new MainMenuMode();
@@ -74,16 +74,16 @@ namespace CuteGod.Play
 			}
 
 			// Load some assets
-			AssetLoader.Update(args.SecondsSinceLastUpdate);
+			AssetLoader.Instance.Update(args.SecondsSinceLastUpdate);
 
 			// Set the color
-			int value = (int) (255.0 * AssetLoader.Pending);
-			text.Color = Color.FromArgb(value, value, value);
-			text2.Color = text.Color;
+			int value = (int) (255.0 * AssetLoader.Instance.Pending);
+			text.Tint = Color.FromArgb(value, value, value);
+			text2.Tint = text.Tint;
 
 			// Update the percentage
 			text2.Text = String
-				.Format("{0:N0}%", AssetLoader.Pending * 100);
+				.Format("{0:N0}%", AssetLoader.Instance.Pending * 100);
 
 			// Update the sprites
             sprites.Update(args);

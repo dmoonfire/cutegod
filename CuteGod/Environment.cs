@@ -58,9 +58,8 @@ namespace CuteGod
 
 				for (int i = 0; i < 50; i++)
 				{
-					DrawableSprite ds =
-						new DrawableSprite(Game.DrawableManager["Mini Star"]);
-					ds.Tint = Color.White;
+					ISprite ds =
+						AssetLoader.Instance.CreateSprite("Mini Star");
 					ds.Visible = true;
 					ds.Point = new PointF(
 						Entropy.NextFloat(0, value.Width),

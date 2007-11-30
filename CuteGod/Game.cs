@@ -18,8 +18,6 @@ namespace CuteGod
     {
         #region Graphics
         private static IBackend backend;
-        private static BlockDrawableManager drawableManager =
-            new BlockDrawableManager();
         private static SpriteManager sprites;
         private static GuiManager gui;
 
@@ -45,14 +43,6 @@ namespace CuteGod
 
                 gui = new GuiManager(sprites);
             }
-        }
-
-        /// <summary>
-        /// Contains the drawable manager used in the game.
-        /// </summary>
-        public static BlockDrawableManager DrawableManager
-        {
-            get { return drawableManager; }
         }
 
         /// <summary>
@@ -121,7 +111,7 @@ namespace CuteGod
 
             // Generate the font
             IBackendFont font = Game.Backend
-                .LoadFont("Fonts/kinkee__.ttf", size, FontStyle.Bold);
+                .LoadFont("Assets/Fonts/kinkee__.ttf", size, FontStyle.Bold);
 			//.LoadFont(FontFamily.GenericSansSerif, size, FontStyle.Bold);
 
             // Cache it and return the results

@@ -18,7 +18,7 @@ namespace CuteGod.Play
         /// Create an empty prayer.
         /// </summary>
         public Prayer()
-            : base(GetRandomCharacterName())
+            : base(GetRandomCharacterSprite())
         {
             // Set the block information
             Height = 1;
@@ -96,6 +96,14 @@ namespace CuteGod.Play
                     return "Character Princess Girl";
             }
         }
+
+		/// <summary>
+		/// Returns a randomly created character sprite.
+		/// </summary>
+		private static ISprite GetRandomCharacterSprite()
+		{
+			return AssetLoader.Instance.CreateSprite(GetRandomCharacterName());
+		}
         #endregion
 
 		#region Updating

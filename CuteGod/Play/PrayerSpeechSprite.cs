@@ -16,7 +16,7 @@ namespace CuteGod.Play
     {
         #region Constructors
         public PrayerSpeechSprite(Prayer prayer)
-            : base(Game.DrawableManager["SpeechBubble"])
+            : base(AssetLoader.Instance.CreateDrawable("SpeechBubble"))
         {
             this.prayer = prayer;
         }
@@ -115,7 +115,7 @@ namespace CuteGod.Play
                 // Get the heart drawable, large if the mouse is over it
                 if (isMouseOver)
                 {
-                    IDrawable hd = Game.DrawableManager["Heart"];
+                    IDrawable hd = AssetLoader.Instance.CreateDrawable("Heart");
                     PointF point = new PointF(
                         Point.X + args.ScreenOffsetX + 1,
                         Point.Y + args.ScreenOffsetY + 20);
@@ -124,7 +124,8 @@ namespace CuteGod.Play
                 else
                 {
                     // Show the mini heart
-                    IDrawable hd = Game.DrawableManager["Half Heart"];
+                    IDrawable hd = AssetLoader.Instance
+						.CreateDrawable("Half Heart");
                     PointF point = new PointF(
                         Point.X + args.ScreenOffsetX + 15,
                         Point.Y + args.ScreenOffsetY + 45);
@@ -151,8 +152,7 @@ namespace CuteGod.Play
                 if (topDown == null)
                 {
 					// Create the top-down element
-					topDown = new TopDownViewport(
-						Prayer.Board, Game.DrawableManager);
+					topDown = new TopDownViewport(Prayer.Board);
 					topDown.BlockFilter =
 						IndicatorsViewport.FilterConstruction;
 

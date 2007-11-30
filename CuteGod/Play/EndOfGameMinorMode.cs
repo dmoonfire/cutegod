@@ -28,7 +28,7 @@ namespace CuteGod.Play
             // Create the game over text
             text = new TextDrawableSprite(Game.GetFont(FontSize),
 				"Game\nOver");
-            text.Color = Color.White;
+            text.Tint = Color.White;
 			text.Alignment = ContentAlignment.MiddleCenter;
             sprites.Add(text);
         }

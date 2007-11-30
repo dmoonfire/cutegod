@@ -3,13 +3,23 @@ LIBRARIES_SOURCE = $(HOME)/src/mfgames/Libraries/
 UTILITY_SOURCE = $(LIBRARIES_SOURCE)/MfGames.Utility/bin/Debug/
 SPRITE3_SOURCE = $(HOME)/src/mfgames/Sprite3/
 
-all: refresh compile
+all: compile
 
 compile:
 	# Compile the code
 	mono tools/prebuild.exe /target nant \
 		/file prebuild.xml /FRAMEWORK MONO_2_0
 	fnant build-debug
+
+	# I hate that .dll's are executable
+	find -name "*.dll" -print0 | xargs -0 chmod a-x
+
+	# Copy the assets directory into the proper place
+	# BUG: Tao.PhysFs doesn't seem to scan directories property
+	if [ -d CuteGod/bin/Debug ]; then \
+		rsync -a -f "- .svn" -f "- *.svg" \
+			Assets/ CuteGod/bin/Debug/Assets/; \
+	fi
 
 #CuteGod/layouts.xml
 update:
@@ -24,12 +34,12 @@ clean:
 CuteGod/layouts.xml: CuteGod/layouts.txt tools/cutegod-layouts.pl
 	tools/cutegod-layouts.pl CuteGod/layouts.txt > CuteGod/layouts.xml
 
-refresh:
-	cp $(BOOGAME_SOURCE)/src/Tao.FreeType/bin/Debug/Tao.FreeType.dll lib
-	cp $(BOOGAME_SOURCE)/src/BooGame/bin/Debug/BooGame.*dll lib
-	cp $(BOOGAME_SOURCE)/src/BooGame.Sdl/bin/Debug/BooGame.*dll lib
-	cp $(BOOGAME_SOURCE)/src/BooGame.FreeGlut/bin/Debug/BooGame.*dll lib
-	cp $(BOOGAME_SOURCE)/lib/mono-2.0/* lib/mono-2.0/
-	cp $(BOOGAME_SOURCE)/lib/win32deps/* lib/win32deps/
-	cp $(BOOGAME_SOURCE)/lib/net-2.0/* lib/net-2.0/
-	cp $(UTILITY_SOURCE)/MfGames.Utility.dll lib/
+#refresh:
+#	cp $(BOOGAME_SOURCE)/src/Tao.FreeType/bin/Debug/Tao.FreeType.dll lib
+#	cp $(BOOGAME_SOURCE)/src/BooGame/bin/Debug/BooGame.*dll lib
+#	cp $(BOOGAME_SOURCE)/src/BooGame.Sdl/bin/Debug/BooGame.*dll lib
+#	cp $(BOOGAME_SOURCE)/src/BooGame.FreeGlut/bin/Debug/BooGame.*dll lib
+#	cp $(BOOGAME_SOURCE)/lib/mono-2.0/* lib/mono-2.0/
+#	cp $(BOOGAME_SOURCE)/lib/win32deps/* lib/win32deps/
+#	cp $(BOOGAME_SOURCE)/lib/net-2.0/* lib/net-2.0/
+#	cp $(UTILITY_SOURCE)/MfGames.Utility.dll lib/

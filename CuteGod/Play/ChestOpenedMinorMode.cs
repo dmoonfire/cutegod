@@ -60,7 +60,7 @@ namespace CuteGod.Play
 
         #region Updating
 		private ChestBonusInfo chestInfo = null;
-		private DrawableSprite bonusSprite;
+		private ISprite bonusSprite;
 		private double chestSeconds;
 		private bool fadeIn;
 		private bool pause;
@@ -91,8 +91,8 @@ namespace CuteGod.Play
 				chestSeconds = Constants.ChestOpenFadeSpeed;
 
 				// Create the sprites and direction
-				bonusSprite = new DrawableSprite(
-					Game.DrawableManager[chestInfo.BlockKey]);
+				bonusSprite = AssetLoader.Instance
+					.CreateSprite(chestInfo.BlockKey);
 				bonusSprite.Point = ChestSprite.Point;
 				fadeIn = true;
 				pause = false;

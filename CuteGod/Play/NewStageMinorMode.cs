@@ -22,7 +22,7 @@ namespace CuteGod.Play
 			: base()
         {
 			// Create the block with a placeholder
-			block = new DrawableSprite(Game.DrawableManager["Star"]);
+			block =	AssetLoader.Instance.CreateSprite("Star");
 			Viewport.Add(block);
         }
         #endregion
@@ -49,7 +49,7 @@ namespace CuteGod.Play
 			ChestVisible = false;
 
 			// Create the block
-			block.Drawable = Game.DrawableManager[info.BlockKey];
+			block = AssetLoader.Instance.CreateSprite(info.BlockKey);
 
 			// Set up our timeout
 			CountingDown = true;
@@ -78,7 +78,7 @@ namespace CuteGod.Play
 		#endregion
 
         #region Properties
-		private DrawableSprite block;
+		private ISprite block;
 
         /// <summary>
         /// Sets the size of the game mode (based on the screen).

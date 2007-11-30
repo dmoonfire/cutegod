@@ -73,7 +73,7 @@ namespace CuteGod.Play
 
             // Create the board viewport
             blockViewport =
-                new BlockViewport(Game.State.Board, Game.DrawableManager);
+                new BlockViewport(Game.State.Board, AssetLoader.Instance);
             blockViewport.ClipContents = true;
             blockViewport.IsMouseSensitive = true;
             blockViewport.MousePosition = 8;
@@ -95,7 +95,7 @@ namespace CuteGod.Play
             scroller.Register(blockViewport);
 
             // Create our selector icon
-            selector = new Block("Selector");
+            selector = new Block(AssetLoader.Instance.CreateSprite("Selector"));
             selector.Height = 0;
             selector.CastsShadows = false;
 
@@ -370,7 +370,7 @@ namespace CuteGod.Play
                 Constants.MinimumGrabHeight);
 
             // Move the selector
-            selector.Position = topPosition;
+            selector.BottomPosition = topPosition;
             currentStack.Add(selector);
 
             // Go through the blocks
@@ -382,7 +382,7 @@ namespace CuteGod.Play
 
                 // Reset the position
                 currentStack.Add(grabStack[i]);
-                grabStack[i].Position = grabPosition + (float) i;
+                grabStack[i].BottomPosition = grabPosition + (float) i;
             }
         }
 
@@ -415,7 +415,7 @@ namespace CuteGod.Play
             // See if we are a ground block
             if (!Board.IsGroundBlock(topBlock) &&
                 !Board.IsImmobileBlock(topBlock) &&
-				topBlock.DrawableName != Constants.BugBlockName ||
+				topBlock.Sprite.ID != Constants.BugBlockName ||
 				topBlock.Data != null)
                 // We aren't a grabbable block
                 return false;
@@ -483,7 +483,7 @@ namespace CuteGod.Play
             grabStack[Constants.MaximumGrabCount - 1] = null;
 
             // Set down the vector
-            block.Position -= 1f;
+            block.BottomPosition -= 1f;
             block.Vector = Constants.DroppedVector;
 
             // Put that block back into the stack
@@ -654,17 +654,17 @@ namespace CuteGod.Play
 					continue;
 
 				// Ignore if the position isn't close
-				if ((int) args.Block.Position != (int) block.TopPosition)
+				if ((int) args.Block.BottomPosition != (int) block.TopPosition)
 					continue;
 				
 				// Check for the drawable
-				if (block.DrawableName == Constants.BugBlockName)
+				if (block.Sprite.ID == Constants.BugBlockName)
 				{
 					// Remove the bug
 					(block as Bug).Remove();
 					
 					// Start falling again
-					args.Block.Position -= 1f;
+					args.Block.BottomPosition -= 1f;
 					args.Block.Vector = Constants.DroppedVector;
 
 					// Finish processing
@@ -709,14 +709,16 @@ namespace CuteGod.Play
             if (!isValidTarget)
             {
                 // Change the selector so it shows an incorrect selection
-                selector.DrawableName = Constants.InvalidSelectorName;
+                selector.Sprite = AssetLoader.Instance
+					.CreateSprite(Constants.InvalidSelectorName);
 
                 // We are done
                 return;
             }
 
             // Change the selector to show a valid selector.
-            selector.DrawableName = Constants.SelectorName;
+            selector.Sprite = AssetLoader.Instance
+				.CreateSprite(Constants.SelectorName);
 
             // We are going to be grabbing or dropping
             Game.GuiManager.MouseUpListeners.Add(this);
@@ -793,7 +795,7 @@ namespace CuteGod.Play
                 PointF p = blockViewport.ToPoint(
                     prayer.X,
                     prayer.Y,
-                    prayer.Position);
+                    prayer.BottomPosition);
                 p.X += blockViewport.BlockWidth - blockViewport.BlockWidth / 3;
                 p.Y -= 2 * blockViewport.BlockOffsetZ;
                 pss.Point = p;
@@ -858,7 +860,8 @@ namespace CuteGod.Play
 			if (heartSwarm.Count > 0)
 			{
 				// Get the drawable
-				IDrawable id = Game.DrawableManager[Constants.MiniHeartName];
+				IDrawable id = AssetLoader.Instance
+					.CreateDrawable(Constants.MiniHeartName);
 
 				// Draw out the swarm
 				foreach (SwarmParticle sp in heartSwarm)
@@ -871,7 +874,8 @@ namespace CuteGod.Play
 			if (starSwarm.Count > 0)
 			{
 				// Get the drawable
-				IDrawable id = Game.DrawableManager[Constants.MiniStarName];
+				IDrawable id = AssetLoader.Instance
+					.CreateDrawable(Constants.MiniStarName);
 
 				// Draw out the swarm
 				foreach (SwarmParticle sp in starSwarm)

@@ -51,26 +51,22 @@ namespace CuteGod.Play
             Add(statusViewport);
 
             // Load the mini icons
-            heart = new DrawableSprite(
-                Game.DrawableManager[Constants.MiniHeartName]);
+            heart = AssetLoader.Instance.CreateSprite(Constants.MiniHeartName);
             heart.Z = 300;
             heart.Point = new PointF(5, 0);
             statusViewport.Add(heart);
 
-            star = new DrawableSprite(
-                Game.DrawableManager[Constants.MiniStarName]);
+            star = AssetLoader.Instance.CreateSprite(Constants.MiniStarName);
             star.Point = new PointF(5, FontSize + 2);
             star.Z = 300;
             statusViewport.Add(star);
 
-            clock = new DrawableSprite(
-                Game.DrawableManager[Constants.MiniClockName]);
+            clock = AssetLoader.Instance.CreateSprite(Constants.MiniClockName);
             clock.Z = 300;
             clock.Point = new PointF(155, 0);
             statusViewport.Add(clock);
 
-            bug = new DrawableSprite(
-                Game.DrawableManager[Constants.MiniBugName]);
+            bug = AssetLoader.Instance.CreateSprite(Constants.MiniBugName);
             bug.Point = new PointF(155, FontSize + 2);
             bug.Z = 300;
             statusViewport.Add(bug);
@@ -81,7 +77,7 @@ namespace CuteGod.Play
                     Game.State.Hearts.ToString());
             heartScore.Z = 300;
             heartScore.Point = new PointF(35, 15);
-            heartScore.Color = Constants.HeartColor;
+            heartScore.Tint = Constants.HeartColor;
 			heartScore.Alignment = ContentAlignment.MiddleLeft;
             statusViewport.Add(heartScore);
 
@@ -91,7 +87,7 @@ namespace CuteGod.Play
                     Game.State.Stars.ToString());
             starScore.Z = 300;
             starScore.Point = new PointF(35, FontSize + 15 + 4);
-            starScore.Color = Constants.StarColor;
+            starScore.Tint = Constants.StarColor;
 			starScore.Alignment = ContentAlignment.MiddleLeft;
             statusViewport.Add(starScore);
 
@@ -101,7 +97,7 @@ namespace CuteGod.Play
                     Game.State.SecondsRemaining.ToString());
             clockScore.Z = 300;
             clockScore.Point = new PointF(185, heartScore.Point.Y);
-            clockScore.Color = Constants.ClockColor;
+            clockScore.Tint = Constants.ClockColor;
 			clockScore.Alignment = ContentAlignment.MiddleLeft;
             statusViewport.Add(clockScore);
 
@@ -111,7 +107,7 @@ namespace CuteGod.Play
                     Game.State.Stars.ToString());
             bugScore.Z = 300;
             bugScore.Point = new PointF(clockScore.Point.X, starScore.Point.Y);
-            bugScore.Color = Constants.BugColor;
+            bugScore.Tint = Constants.BugColor;
 			bugScore.Alignment = ContentAlignment.MiddleLeft;
             statusViewport.Add(bugScore);
 
@@ -127,12 +123,9 @@ namespace CuteGod.Play
         private SpriteViewport statusViewport;
         private TextDrawableSprite heartScore;
         private TextDrawableSprite starScore;
-        private DrawableSprite heart;
-        private DrawableSprite star;
+        private ISprite heart, star, bug, clock;
         private TextDrawableSprite bugScore;
         private TextDrawableSprite clockScore;
-        private DrawableSprite bug;
-        private DrawableSprite clock;
 
 		/// <summary>
 		/// Contains the position of the heart icon.
@@ -263,7 +256,7 @@ namespace CuteGod.Play
         public static bool FilterConstruction(
 			object sender, BlockFilterArgs args)
         {
-            return args.Block.Position == 0;
+            return args.Block.BottomPosition == 0;
         }
 
         /// <summary>
@@ -289,9 +282,7 @@ namespace CuteGod.Play
                 if (!prayerViews.Contains(prayer))
                 {
                     // We need to create the top-down view
-                    TopDownViewport tdv = new TopDownViewport(prayer.Board,
-                        Game.DrawableManager);
-
+                    TopDownViewport tdv = new TopDownViewport(prayer.Board);
                     tdv.BlockFilter = FilterConstruction;
 
                     // Set the value

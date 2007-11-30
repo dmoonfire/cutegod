@@ -95,41 +95,48 @@ namespace CuteGod
 			title = new TextDrawableSprite(Game.GetFont(FontSize),
 				"Cute God");
 			title.Alignment = ContentAlignment.TopCenter;
-			title.Color = Color.White;
+			title.Tint = Color.White;
 			sprites.Add(title);
 
 			version = new TextDrawableSprite(Game.GetFont(SmallFontSize),
 				"Alpha (0.1)");
 			version.Alignment = ContentAlignment.BottomRight;
-			version.Color = Color.FromArgb(64, Color.White);
+			version.Tint = Color.FromArgb(64, Color.White);
 			sprites.Add(version);
 
 			// Create the buttons
-			newGame = new MainMenuButton(Game.DrawableManager["new-game"]);
+			newGame = new MainMenuButton(AssetLoader.Instance
+				.CreateDrawable("new-game"));
 			newGame.Clicked += NewGameClicked;
 			sprites.Add(newGame);
 
-			settings = new MainMenuButton(Game.DrawableManager["settings"]);
+			settings = new MainMenuButton(AssetLoader.Instance
+				.CreateDrawable("settings"));
 			sprites.Add(settings);
 
-			resume = new MainMenuButton(Game.DrawableManager["resume-game"]);
+			resume = new MainMenuButton(AssetLoader.Instance
+				.CreateDrawable("resume-game"));
 			
 			if (Game.PlayMode != null)
 				resume.Clicked += ResumeClicked;
 
 			sprites.Add(resume);
 
-			help = new MainMenuButton(Game.DrawableManager["help"]);
+			help = new MainMenuButton(AssetLoader.Instance
+				.CreateDrawable("help"));
 			sprites.Add(help);
 
-			scores = new MainMenuButton(Game.DrawableManager["high-scores"]);
+			scores = new MainMenuButton(AssetLoader.Instance
+				.CreateDrawable("high-scores"));
 			sprites.Add(scores);
 
-			credits = new MainMenuButton(Game.DrawableManager["credits"]);
+			credits = new MainMenuButton(AssetLoader.Instance
+				.CreateDrawable("credits"));
 			credits.Clicked += CreditsClicked;
 			sprites.Add(credits);
 
-			quit = new MainMenuButton(Game.DrawableManager["quit"]);
+			quit = new MainMenuButton(AssetLoader.Instance
+				.CreateDrawable("quit"));
 			quit.Clicked += QuitClicked;
 			sprites.Add(quit);
 
@@ -137,7 +144,7 @@ namespace CuteGod
 			board = new BlockBoard(BoardRows, BoardColumns);
 			board.BlockMovingChanged += OnBlockMovingChanged;
 
-			viewport = new BlockViewport(board, Game.DrawableManager);
+			viewport = new BlockViewport(board, AssetLoader.Instance);
 			viewport.FocusPosition = Constants.FocusPosition;
 			PopulateBoard();
 			// We don't add to the sprites since we are manually
@@ -174,7 +181,7 @@ namespace CuteGod
 
 			foreach (Block b in tmpBlocks)
 			{
-				if (b.Position > 10)
+				if (b.BottomPosition > 10)
 				{
 					stacks[b].Remove(b);
 					blocks.Remove(b);
@@ -220,7 +227,7 @@ namespace CuteGod
 			{
 				// Create a new block
 				Block nb = new Block(RandomBlock());
-				nb.Position = 10;
+				nb.BottomPosition = 10;
 				nb.Vector = Constants.DroppedVector;
 				nb.Mass = Constants.BlockMass;
 				nb.IsMoving = true;
@@ -269,7 +276,7 @@ namespace CuteGod
 					for (int i = 0; i < total; i++)
 					{
 						Block block = new Block(RandomBlock());
-						block.Position = i;
+						block.BottomPosition = i;
 						block.CastsShadows = true;
 						block.Height = 1;
 						block.Mass = Constants.BlockMass;
@@ -282,16 +289,22 @@ namespace CuteGod
 		/// <summary>
 		/// Get a random block name.
 		/// </summary>
-		private string RandomBlock()
+		private ISprite RandomBlock()
 		{
+			// Figure out the block type
+			string blockKey = null;
+
 			switch (Entropy.Next(3))
 			{
-			case 0: return "Grass Block";
-			case 1: return "Dirt Block";
-			case 2: return "Water Block";
-			default:
-				throw new Exception("Cannot figure out random");
+				case 0: blockKey = "Grass Block"; break;
+				case 1: blockKey = "Dirt Block"; break;
+				case 2: blockKey = "Water Block"; break;
+				default:
+					throw new Exception("Cannot figure out random");
 			}
+
+			// Return the block
+			return AssetLoader.Instance.CreateSprite(blockKey);
 		}
 		#endregion
 
@@ -366,8 +379,8 @@ namespace CuteGod
 				title.Point = new PointF(
 					(ratio * titleStart.X + inverse * titleEnd.X),
 					(ratio * titleStart.Y + inverse * titleEnd.Y));
-				title.Color = Color.FromArgb(alpha, Color.White);
-				version.Color = Color.FromArgb(alpha / 4, Color.White);
+				title.Tint = Color.FromArgb(alpha, Color.White);
+				version.Tint = Color.FromArgb(alpha / 4, Color.White);
 
 				// New Game
 				newGame.Point = new PointF(
@@ -415,8 +428,8 @@ namespace CuteGod
 			{
 				// Set everything into the proper place
 				title.Point = titleEnd;
-				title.Color = Color.White;
-				version.Color = Color.FromArgb(64, Color.White);
+				title.Tint = Color.White;
+				version.Tint = Color.FromArgb(64, Color.White);
 
 				newGame.Point = newGameEnd;
 				newGame.Alpha = 255;
