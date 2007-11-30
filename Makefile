@@ -5,7 +5,7 @@ SPRITE3_SOURCE = $(HOME)/src/mfgames/Sprite3/
 
 all: compile
 
-compile:
+compile: CuteGod/layouts.xml
 	# Compile the code
 	mono tools/prebuild.exe /target nant \
 		/file prebuild.xml /FRAMEWORK MONO_2_0

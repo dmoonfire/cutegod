@@ -5,6 +5,8 @@ using MfGames.Sprite3.Backends;
 using MfGames.Utility;
 using System;
 using System.Drawing;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace CuteGod
 {
@@ -43,18 +45,51 @@ namespace CuteGod
 		/// </summary>
 		public void Queue()
 		{
-			// Main menu elements
-			QueueDrawable("Assets/quit.png");
-			QueueDrawable("Assets/credits.png");
-			QueueDrawable("Assets/help.png");
-			QueueDrawable("Assets/high-scores.png");
-			QueueDrawable("Assets/new-game.png");
-			QueueDrawable("Assets/resume-game.png");
-			QueueDrawable("Assets/settings.png");
+			// Scan the Assets/Images directory for drawables
+			DirectoryInfo images = new DirectoryInfo(
+				Path.Combine("Assets", "Images"));
+
+			// Load the individual images into memory
+			foreach (FileInfo fi in images.GetFiles("*.png"))
+			{
+				// Load these images
+				QueueDrawable("Assets/Images/" + fi.Name);
+			}
+
+			// Load the individual directories
+			Regex regex = new Regex(@"(\s+\d+)?\.png");
+
+			foreach (DirectoryInfo di in images.GetDirectories())
+			{
+				// Ignore some common ones
+				if (di.Name.StartsWith("."))
+					continue;
+
+				// Get the asset sprite type for this directory
+				string key = di.Name;
+
+				if (!sprites.Contains(key))
+					sprites[key] = new AssetSpriteType(key);
+
+				AssetSpriteType spriteType = sprites[key];
+
+				// Go through each file in this directory
+				foreach (FileInfo fi in di.GetFiles("*.png"))
+				{
+					// Figure out the components
+					string path = String.Format("Assets/Images/{0}/{1}",
+						key, fi.Name);
+					string key2 = regex.Replace(fi.Name, "");
+
+					// Get the asset sprite
+					AssetSprite sprite = spriteType.GetAssetSprite(key2);
+
+					// Queue loading the drawable
+					Queue(new AssetLoaderSprite(sprite, path));
+				}
+			}
 
 #if REMOVED
-			// Load up the drawable sets
-
             // Set up the core blocks
             QueueDrawable("PlanetCute/Custom/Immobile Block.png",
                 Color.Black);
@@ -130,44 +165,6 @@ namespace CuteGod
 				Color.White);
             QueueDrawable("PlanetCute/Wood Block.png",
 				Color.White);
-
-            // Characters
-            QueueDrawable("PlanetCute/Character Boy.png");
-            QueueDrawable("PlanetCute/Character Cat Girl.png");
-            QueueDrawable("PlanetCute/Character Horn Girl.png");
-            QueueDrawable("PlanetCute/Character Pink Girl.png");
-            QueueDrawable("PlanetCute/Character Princess Girl.png");
-            QueueDrawable("PlanetCute/Enemy Bug.png");
-
-            QueueDrawable("PlanetCute/SpeechBubble.png");
-
-            // These are the icons
-            QueueDrawable("PlanetCute/Gem Blue.png");
-            QueueDrawable("PlanetCute/Gem Green.png");
-            QueueDrawable("PlanetCute/Gem Orange.png");
-            QueueDrawable("PlanetCute/Heart.png");
-            QueueDrawable("PlanetCute/Star.png");
-            QueueDrawable("PlanetCute/Key.png");
-            QueueDrawable("PlanetCute/Chest Closed.png");
-            QueueDrawable("PlanetCute/Chest Open.png");
-            QueueDrawable("PlanetCute/Chest Lid.png");
-
-            QueueDrawable("PlanetCute/Custom/Half Heart.png");
-            QueueDrawable("PlanetCute/Custom/Mini Heart.png");
-            QueueDrawable("PlanetCute/Custom/Mini Star.png");
-            QueueDrawable("PlanetCute/Custom/Mini Bug.png");
-            QueueDrawable("PlanetCute/Custom/Mini Clock.png");
-
-            // These are the shadows
-            QueueDrawable("PlanetCute/Shadow East.png");
-            QueueDrawable("PlanetCute/Shadow North East.png");
-            QueueDrawable("PlanetCute/Shadow North West.png");
-            QueueDrawable("PlanetCute/Shadow North.png");
-            QueueDrawable("PlanetCute/Shadow Side West.png");
-            QueueDrawable("PlanetCute/Shadow South East.png");
-            QueueDrawable("PlanetCute/Shadow South West.png");
-            QueueDrawable("PlanetCute/Shadow South.png");
-            QueueDrawable("PlanetCute/Shadow West.png");
 
             // Selector
             QueueDrawable("PlanetCute/Selector.png", Color.Yellow);
@@ -265,23 +262,13 @@ namespace CuteGod
         {
 			Queue(new AssetLoaderTexture(path));
         }
-
-        /// <summary>
-        /// Queues a single drawable into the system, setting up the
-        /// internal elements.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="color"></param>
-        /// <param name="height"></param>
-        private void QueueDrawable(string path, ColorF color)
-        {
-			Queue(new AssetLoaderTexture(path, color));
-        }
 		#endregion
 
 		#region Sprite Creation
 		private HashDictionary<string, IDrawable> drawables =
 			new HashDictionary<string, IDrawable> ();
+		private HashDictionary<string, AssetSpriteType> sprites =
+			new HashDictionary<string, AssetSpriteType>();
 
 		/// <summary>
 		/// Contains a hash of a string to drawable mapping.
@@ -289,6 +276,14 @@ namespace CuteGod
 		public IDictionary<string, IDrawable> Drawables
 		{
 			get { return drawables; }
+		}
+
+		/// <summary>
+		/// Contains a hash tree of the loaded sprites.
+		/// </summary>
+		public IDictionary<string, AssetSpriteType> Sprites
+		{
+			get { return sprites; }
 		}
 
 		/// <summary>
@@ -312,7 +307,13 @@ namespace CuteGod
 		/// </summary>
 		public ISprite CreateSprite(string key)
 		{
-			throw new Exception("Cannot create sprite of key: " + key);
+			// See if we have the sprite type
+			if (!sprites.Contains(key))
+				throw new Exception("No such sprite key: " + key);
+
+			// Grab the asset type
+			AssetSpriteType ast = sprites[key];
+			return ast.CreateRandomSprite();
 		}
 		#endregion
 	}

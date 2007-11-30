@@ -7,22 +7,23 @@ using System;
 namespace CuteGod
 {
 	/// <summary>
-	/// Defers the loading of textures by the use of the AssetLoader
-	/// class.
+	/// Defers the loading of a single drawable of a sprite until later.
 	/// </summary>
-	public class AssetLoaderTexture
+	public class AssetLoaderSprite
 	: IAssetLoader
 	{
 		#region Constructors
-		public AssetLoaderTexture(string path)
+		public AssetLoaderSprite(AssetSprite sprite, string path)
 		{
+			this.sprite = sprite;
 			Filename = path;
 		}
- 		#endregion
+		#endregion
 
 		#region Properties
 		private string key;
 		private string filename;
+		private AssetSprite sprite;
 
 		/// <summary>
 		/// Sets the filename for this loader.
@@ -46,12 +47,24 @@ namespace CuteGod
 		/// </summary>
 		public void Load()
 		{
-            // Load the drawable using PhysFs
-            Texture texture = Core.Backend.CreateTexture(filename);
-            TextureDrawable drawable = new TextureDrawable(texture);
+			// See if we already have it
+			TextureDrawable drawable = null;
 
-			// Set the drawable in the cache
-			AssetLoader.Instance.Drawables[key] = drawable;
+			if (AssetLoader.Instance.Drawables.Contains(key))
+			{
+				drawable =
+					(TextureDrawable) AssetLoader.Instance.Drawables[key];
+			}
+			else // Create it
+			{
+				// Load the drawable using PhysFs
+				Texture texture = Core.Backend.CreateTexture(filename);
+				drawable = new TextureDrawable(texture);
+				AssetLoader.Instance.Drawables[key] = drawable;
+			}
+
+			// Set the drawable in the asset sprite
+			sprite.Drawables.Add(drawable);
 		}
 		#endregion
 	}

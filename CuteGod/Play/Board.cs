@@ -507,17 +507,17 @@ namespace CuteGod.Play
 							{
 							case "Water Block":
 								bBlock.Sprite =	AssetLoader.Instance
-									.CreateSprite("Sealed Water");
+									.CreateSprite("Sealed Water Block");
 								bBlock.Data = false;
 								break;
 							case "Grass Block":
 								bBlock.Sprite =	AssetLoader.Instance
-									.CreateSprite("Sealed Grass");
+									.CreateSprite("Sealed Grass Block");
 								bBlock.Data = false;
 								break;
 							case "Dirt Block":
 								bBlock.Sprite =	AssetLoader.Instance
-									.CreateSprite("Sealed Dirt");
+									.CreateSprite("Sealed Dirt Block");
 								bBlock.Data = false;
 								break;
 							case "Invisible":

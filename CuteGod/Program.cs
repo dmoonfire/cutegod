@@ -90,7 +90,7 @@ namespace CuteGod
 
             // Start up the initial game state
             Game.GameMode = new SplashMode(
-				"Assets/mfgames-splash.png",
+				"Assets/Images/mfgames-splash.png",
 				5.0,
 				new AssetLoadingMode());
         }

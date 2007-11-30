@@ -73,36 +73,12 @@ namespace CuteGod.Play
         #endregion
 
         #region Block
-        /// <summary>
-        /// Gets a random character name (as a DrawableName) for
-        /// the character.
-        /// </summary>
-        /// <returns></returns>
-        private static string GetRandomCharacterName()
-        {
-            // Pick a random one
-            switch (Entropy.Next(0, 5))
-            {
-                case 0:
-                    return "Character Boy";
-                case 1:
-                    return "Character Cat Girl";
-                case 2:
-                    return "Character Horn Girl";
-                case 3:
-                    return "Character Pink Girl";
-                case 4:
-                default:
-                    return "Character Princess Girl";
-            }
-        }
-
 		/// <summary>
 		/// Returns a randomly created character sprite.
 		/// </summary>
 		private static ISprite GetRandomCharacterSprite()
 		{
-			return AssetLoader.Instance.CreateSprite(GetRandomCharacterName());
+			return AssetLoader.Instance.CreateSprite("Character");
 		}
         #endregion
 

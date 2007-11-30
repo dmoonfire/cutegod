@@ -195,7 +195,7 @@ namespace CuteGod
 			// Update the start alpha
 			if (night > 0)
 			{
-				foreach (DrawableSprite ds in sprites[0])
+				foreach (ISprite ds in sprites[0])
 				{
 					int alpha = ds.Tint.A;
 					alpha += Entropy.Next(-3, 3);

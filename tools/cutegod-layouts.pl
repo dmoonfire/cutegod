@@ -249,9 +249,9 @@ sub get_block_name
     return "Dirt Block"         if ($init eq "DB");
     return "Water Block"        if ($init eq "WB");
 
-    return "Sealed Grass"       if ($init eq "SG");
-    return "Sealed Dirt"        if ($init eq "SD");
-    return "Sealed Water"       if ($init eq "SW");
+    return "Sealed Grass Block" if ($init eq "SG");
+    return "Sealed Dirt Block"  if ($init eq "SD");
+    return "Sealed Water Block" if ($init eq "SW");
 
     return "Stone Block"        if ($init eq "SB");
     return "Stone Block Tall"   if ($init eq "SBT");

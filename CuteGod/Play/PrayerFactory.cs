@@ -20,6 +20,49 @@ namespace CuteGod.Play
         /// </summary>
         public PrayerFactory()
         {
+		}
+        #endregion
+
+        #region Boards
+		private bool isLoaded = false;
+        private LinkedList<Board> boards = new LinkedList<Board>();
+
+        /// <summary>
+        /// Generates a prayer from one randomly selected of the boards.
+        /// </summary>
+        /// <param name="maxSize"></param>
+        /// <returns></returns>
+        public Prayer CreatePrayer()
+        {
+            // Create a new prayer
+            Prayer prayer = new Prayer(CreatePrayerBoard());
+
+            // Return the results
+            return prayer;
+        }
+
+        public Board CreatePrayerBoard()
+        {
+			// If we haven't loaded, load ourselves
+			if (!isLoaded)
+			{
+				isLoaded = true;
+				LoadPrayers();
+			}
+
+            // Select a random board
+            int index = Entropy.Next(0, boards.Count);
+            Board board = boards[index];
+
+            // Clone and return it
+            return (Board) board.Clone();
+        }
+
+		/// <summary>
+		/// Loads the prayers into memory.
+		/// </summary>
+		private void LoadPrayers()
+		{
             // Get the manifest string
             Stream stream = GetType().Assembly
                 .GetManifestResourceStream("CuteGod.layouts.xml");
@@ -43,35 +86,7 @@ namespace CuteGod.Play
                     boards.Add(board);
                 }
             }
-        }
-        #endregion
-
-        #region Boards
-        private LinkedList<Board> boards = new LinkedList<Board>();
-
-        /// <summary>
-        /// Generates a prayer from one randomly selected of the boards.
-        /// </summary>
-        /// <param name="maxSize"></param>
-        /// <returns></returns>
-        public Prayer CreatePrayer()
-        {
-            // Create a new prayer
-            Prayer prayer = new Prayer(CreatePrayerBoard());
-
-            // Return the results
-            return prayer;
-        }
-
-        public Board CreatePrayerBoard()
-        {
-            // Select a random board
-            int index = Entropy.Next(0, boards.Count);
-            Board board = boards[index];
-
-            // Clone and return it
-            return (Board) board.Clone();
-        }
+		}
         #endregion
     }
 }

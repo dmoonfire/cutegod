@@ -343,7 +343,7 @@
     <column>
       <row>
         <block name="Grass Block" position="2" height="1" cast-shadows="True" />
-        <block name="Sealed Water" position="1" height="1" cast-shadows="True" />
+        <block name="Sealed Water Block" position="1" height="1" cast-shadows="True" />
         <block name="Water Block" position="0" height="1" cast-shadows="True" />
       </row>
       <row>

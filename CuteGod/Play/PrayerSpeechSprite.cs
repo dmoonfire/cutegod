@@ -16,7 +16,7 @@ namespace CuteGod.Play
     {
         #region Constructors
         public PrayerSpeechSprite(Prayer prayer)
-            : base(AssetLoader.Instance.CreateDrawable("SpeechBubble"))
+            : base(AssetLoader.Instance.CreateDrawable("Speech Bubble"))
         {
             this.prayer = prayer;
         }
