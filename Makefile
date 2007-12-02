@@ -33,13 +33,3 @@ clean:
 
 CuteGod/layouts.xml: CuteGod/layouts.txt tools/cutegod-layouts.pl
 	tools/cutegod-layouts.pl Resources/layouts.txt > Resources/layouts.xml
-
-#refresh:
-#	cp $(BOOGAME_SOURCE)/src/Tao.FreeType/bin/Debug/Tao.FreeType.dll lib
-#	cp $(BOOGAME_SOURCE)/src/BooGame/bin/Debug/BooGame.*dll lib
-#	cp $(BOOGAME_SOURCE)/src/BooGame.Sdl/bin/Debug/BooGame.*dll lib
-#	cp $(BOOGAME_SOURCE)/src/BooGame.FreeGlut/bin/Debug/BooGame.*dll lib
-#	cp $(BOOGAME_SOURCE)/lib/mono-2.0/* lib/mono-2.0/
-#	cp $(BOOGAME_SOURCE)/lib/win32deps/* lib/win32deps/
-#	cp $(BOOGAME_SOURCE)/lib/net-2.0/* lib/net-2.0/
-#	cp $(UTILITY_SOURCE)/MfGames.Utility.dll lib/

@@ -33,3 +33,7 @@
 	with 3 already). This should reduce the frequence of the trickster
 	nicely, but if you get a bunch of bonuses to reduce it, you may
 	get a higher frequency of them for a bit.
+
+	* CuteGod/Prayer.cs: Characters now bounce around a bit, as long
+	as they don't jump more than a single block and height and they
+	are only going in an east/west direction.

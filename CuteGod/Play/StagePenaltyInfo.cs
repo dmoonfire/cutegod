@@ -189,7 +189,7 @@ namespace CuteGod.Play
 						+ Game.State.DeadWaterCount > 0;
 
 				case StagePenaltyType.IncreasedGrabCost:
-					return Grab.State.GrabCost * 5 <= Game.State.StagesStarted;
+					return Game.State.GrabCost * 5 <= Game.State.StagesStarted;
 
 				case StagePenaltyType.Countdown:
 					return Game.State.SecondsPerTurn < 0 &&

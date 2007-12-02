@@ -195,6 +195,27 @@ namespace CuteGod
 		public static readonly float PrayerBounceVector = -2;
 
 		/// <summary>
+		/// How much extra high should they jump if they are jumping
+		/// north.
+		/// </summary>
+		public static readonly float PrayerBounceNorthVector = -2;
+
+		/// <summary>
+		/// How much extra should they jump up a block?
+		/// </summary>
+		public static readonly float PrayerBounceUpVector = -1f;
+
+		/// <summary>
+		/// The rate for moving up and down to make it a smooth jump.
+		/// </summary>
+		public static readonly float PrayerNorthSouthAdjust = 1.0f;
+
+		/// <summary>
+		/// The rate for moving right and left for a smooth jump.
+		/// </summary>
+		public static readonly float PrayerEastWestAdjust = 65.0f;
+
+		/// <summary>
 		/// How hard does the bug jump when it is time.
 		/// </summary>
 		public static readonly float BugBounceVector = -1;
