@@ -81,7 +81,7 @@ namespace CuteGod.Play
         public void MouseUp(GuiMouseEventArgs args)
         {
             // We only do stuff if we haven't been accepted
-            if (prayer.IsAccepted)
+            if (Game.PlayMode == null || prayer.IsAccepted)
                 return;
 
 			// Create the center point

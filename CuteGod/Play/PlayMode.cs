@@ -489,6 +489,10 @@ namespace CuteGod.Play
             // Put that block back into the stack
 			droppingBlocks.Add(block);
             currentStack.Add(block);
+
+            // Mark this as the end of the turn
+            Game.State.Hearts -= Game.State.GrabCost;
+            Game.State.EndTurn();
         }
 
         /// <summary>
@@ -586,10 +590,6 @@ namespace CuteGod.Play
             args.Stack = currentStack;
             args.Block = topBlock;
             Game.Sound.BlockGrabbed(this, args);
-            Game.State.Hearts -= Game.State.GrabCost;
-
-            // Mark this as the end of the turn
-            Game.State.EndTurn();
         }
 
         /// <summary>

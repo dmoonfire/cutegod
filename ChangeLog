@@ -40,3 +40,9 @@
 
 	* CuteGod/SplashMode.cs: Allowed mouse-click to turn off splash
 	mode, keyboard always worked though.
+
+	* Changed scoring so you lost hearts dropping a block, not picking
+	it up.
+
+	* The characters don't move if they haven't been accepeted, they
+	just bounce up and down.

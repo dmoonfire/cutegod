@@ -242,6 +242,10 @@ namespace CuteGod.Play
 			if (direction == 1 || direction == 3)
 				direction++;
 
+			// If we haven't been accepted, we don't move around
+			if (!IsAccepted)
+				direction = 0;
+
 			// Do sanity checking on the bounds of the stage. If
 			// we are on the end and we would have jumped off, set
 			// the direction to "none"
