@@ -87,7 +87,7 @@ namespace CuteGod.Play
             viewport.Add(title);
 
 			// Create the title text
-            text = new TextDrawableSprite(
+            text = new TextLayoutDrawableSprite(
 				Game.GetFont(DescriptionFontSize), "");
             text.Tint = Color.White;
 			text.Alignment = ContentAlignment.TopCenter;
@@ -142,6 +142,14 @@ namespace CuteGod.Play
 				subtitle.Point = new PointF(cx, 20);
 				title.Point = new PointF(cx, 80);
 				text.Point = new PointF(cx, 200);
+
+				// Figure out the message display size. This is used
+				// for the word-wrapping processing.
+				textRegion = new RectangleF(
+					0, 200,
+					viewport.Size.Width,
+					viewport.Size.Height - 200);
+				text.Region = textRegion;
             }
         }
 
@@ -164,8 +172,10 @@ namespace CuteGod.Play
         private SpriteViewport sprites, viewport;
         private ISprite heartSprite, starSprite, chestSprite;
         private TextDrawableSprite heartText, starText, chestText;
-		private TextDrawableSprite subtitle, title, text;
+		private TextDrawableSprite subtitle, title;
+		private TextLayoutDrawableSprite text;
 		private int chestCounter;
+		private RectangleF textRegion;
 
 		public int ChestCounter
 		{
@@ -266,6 +276,7 @@ namespace CuteGod.Play
         /// <param name="args"></param>
         public virtual void Draw(DrawingArgs args)
         {
+			// Draw the sprites
             sprites.Draw(args);
         }
         #endregion

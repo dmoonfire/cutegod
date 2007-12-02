@@ -132,12 +132,12 @@ namespace CuteGod.Play
 			private set
 			{
 				description = value
-					.Trim()
 					.Replace("\t", " ")
+					.Replace("\r", " ")
+					.Replace("\n", " ")
 					.Replace("  ", " ")
-					.Replace("\n\r", "\n")
-					.Replace("\r", "\n")
-					.Replace("\n ", "\n");
+					.Replace("  ", " ")
+					.Trim();
 			}
 		}
 

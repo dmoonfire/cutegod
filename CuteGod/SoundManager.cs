@@ -296,6 +296,12 @@ namespace CuteGod
         /// <param name="block"></param>
         public void BlockLanded(object sender, BlockStackEventArgs args)
         {
+			// Ignore blanks
+			if (args.Block == null ||
+				args.Block.Sprite == null ||
+				args.Block.Sprite.ID == null)
+				return;
+
 			// Make sure we don't have a character
 			if (args.Block.Sprite.ID.Contains("Character"))
 				return;
