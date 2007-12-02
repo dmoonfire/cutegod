@@ -46,3 +46,10 @@
 
 	* The characters don't move if they haven't been accepeted, they
 	just bounce up and down.
+
+	* Added a sort-of undo function. If you drop the block back on the
+	same stack, it no longer subtracts a heart. Rotating the grab
+	stack will reset this though.
+
+	* Corrected a bug with prayer complete screen coordinates. This
+	was from the underlying Sprite3 layer.

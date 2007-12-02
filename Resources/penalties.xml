@@ -55,10 +55,10 @@ blocks that cannot be moved.
     <title>Increased Grab Cost</title>
     <block>Heart</block>
     <description>
-Some trickster has poured some lead
+Some trickster has put hot air
 into your blocks, making it harder to
-pick them up. It now costs {2} hearts
-to pick up a block.
+drop them up. It now costs {2} hearts
+to drop a block.
     </description>
   </penalty>
 
@@ -70,7 +70,7 @@ The Cosmic Fox has decided that to give
 you a hard time. Either that or he
 hasn't had his coffee this morning.
 Regardless, you now have a minute to
-pick up a brick or answer a prayer
+drop a brick or answer a prayer
 before he takes a heart away.
     </description>
   </penalty>

@@ -68,8 +68,16 @@ namespace CuteGod
             catch (Exception e)
             {
                 // Fallback error
-                System.Windows.Forms.MessageBox.Show("There was an error: "
-                    + e.Message);
+				Logger.Error(typeof(Program), "Exception: {0}", e.ToString());
+
+				try
+				{
+					System.Windows.Forms.MessageBox.Show("There was an error: "
+						+ e.Message);
+				}
+				catch {}
+				
+				// Toss it again
 				throw e;
             }
         }

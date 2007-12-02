@@ -341,6 +341,7 @@ namespace CuteGod.Play
         private Block selector;
 
         private BlockStack currentStack;
+		private BlockStack lastGrabStack;
 		private LinkedList<Block> droppingBlocks = new LinkedList<Block>();
 
         /// <summary>
@@ -491,8 +492,15 @@ namespace CuteGod.Play
             currentStack.Add(block);
 
             // Mark this as the end of the turn
-            Game.State.Hearts -= Game.State.GrabCost;
-            Game.State.EndTurn();
+			if (currentStack != lastGrabStack)
+			{
+				// Subtract a heart and score it
+				Game.State.Hearts -= Game.State.GrabCost;
+				Game.State.EndTurn();
+			}
+
+			// Reset the grab stack for "undo"
+			lastGrabStack = null;
         }
 
         /// <summary>
@@ -590,6 +598,9 @@ namespace CuteGod.Play
             args.Stack = currentStack;
             args.Block = topBlock;
             Game.Sound.BlockGrabbed(this, args);
+
+			// Save the last grab stack
+			lastGrabStack = currentStack;
         }
 
         /// <summary>

@@ -275,6 +275,14 @@ namespace CuteGod.Play
         /// <returns></returns>
         public static bool IsGroundBlock(Block block)
         {
+			// Ignore nulls
+			if (block == null ||
+				block.Sprite == null ||
+				block.Sprite.ID == null)
+			{
+				return false;
+			}
+
             // Get the name
             string name = block.Sprite.ID;
 

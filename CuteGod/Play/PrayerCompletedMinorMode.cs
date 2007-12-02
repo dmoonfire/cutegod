@@ -112,6 +112,7 @@ namespace CuteGod.Play
                 float x = (Viewport.Size.Width - rect.Width) / 2;
                 blockViewport.Point = new PointF(x, y);
                 blockViewport.Size = rect.Size;
+				Error("Rect: {1} - {0}", blockViewport.Point, rect);
             }
         }
 
