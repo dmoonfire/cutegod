@@ -41,7 +41,10 @@ namespace CuteGod.Play
 
 			// If we are null, then just continue on
 			if (info == null)
+			{
 				Timeout();
+				return;
+			}
 
 			// Set the value
 			Subtitle = "New Stage";

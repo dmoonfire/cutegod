@@ -3,6 +3,7 @@ using MfGames.Sprite3;
 using MfGames.Sprite3.Backends;
 using MfGames.Utility;
 using System;
+using System.Drawing;
 
 namespace CuteGod
 {
@@ -12,6 +13,7 @@ namespace CuteGod
 	/// be "Immobile/Immobile Block A".
 	/// </summary>
 	public class AssetSpriteType
+	: Logable
 	{
 		#region Constructors
 		public AssetSpriteType(string name)
@@ -22,8 +24,18 @@ namespace CuteGod
 
 		#region Properties
 		private string name;
+		private Color? color;
 		private ArrayList<AssetSprite> sprites =
 			new ArrayList<AssetSprite>();
+
+		/// <summary>
+		/// Contains the color assigned to this block type.
+		/// </summary>
+		public Color? Color
+		{
+			get { return color; }
+			set { color = value; }
+		}
 
 		/// <summary>
 		/// Returns a random asset sprite inside this object.

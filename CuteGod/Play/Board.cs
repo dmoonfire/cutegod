@@ -173,8 +173,8 @@ namespace CuteGod.Play
                     stack.IsInInitialPlacement = true;
 
                     // Set a new immobile block into place
-                    Block block = new Block(AssetLoader.Instance
-						.CreateSprite(Constants.ImmobileBlockName));
+                    Block block = AssetLoader.Instance
+						.CreateBlock(Constants.ImmobileBlockName);
                     block.BottomPosition = 0;
                     block.Height = 1;
 
@@ -232,7 +232,7 @@ namespace CuteGod.Play
         public Block CreateBlock(string key)
         {
             // Create the basic block
-            Block block = new Block(AssetLoader.Instance.CreateSprite(key));
+            Block block = AssetLoader.Instance.CreateBlock(key);
 
             // Set up some of the default properties
             block.CastsShadows = true;

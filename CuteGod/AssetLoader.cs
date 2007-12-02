@@ -2,11 +2,13 @@ using BooGame.Video;
 using C5;
 using MfGames.Sprite3;
 using MfGames.Sprite3.Backends;
+using MfGames.Sprite3.PlanetCute;
 using MfGames.Utility;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace CuteGod
 {
@@ -17,7 +19,7 @@ namespace CuteGod
 	/// query the status.
 	/// </summary>
 	public class AssetLoader
-	: Logable, ISpriteFactory
+	: Logable, IBlockFactory
 	{
 		#region Singleton
 		private static AssetLoader instance;
@@ -75,6 +77,15 @@ namespace CuteGod
 
 				AssetSpriteType spriteType = sprites[key];
 
+				// Load the type information, if we have one
+				if (File.Exists(Path.Combine(di.FullName, "block.xml")))
+				{
+					// Load the block information, this controls the
+					// color of the blocks.
+					LoadAssetTypeMeta(spriteType, 
+						new FileInfo(Path.Combine(di.FullName, "block.xml")));
+				}
+
 				// Go through each file in this directory
 				foreach (FileInfo fi in di.GetFiles("*.png"))
 				{
@@ -108,89 +119,6 @@ namespace CuteGod
 					Game.Sound.Register(di.Name, fi);
 				}
 			}
-
-#if REMOVED
-            // Set up the core blocks
-            QueueDrawable("PlanetCute/Custom/Immobile Block.png",
-                Color.Black);
-
-            // These are the blocks the user will be moving
-            QueueDrawable("PlanetCute/Grass Block.png",
-                Color.FromArgb(95, 193, 72));
-            QueueDrawable("PlanetCute/Custom/Water Block.png",
-                Color.FromArgb(97, 119, 221));
-            QueueDrawable("PlanetCute/Dirt Block.png",
-                Color.FromArgb(193, 143, 72));
-            QueueDrawable("PlanetCute/Custom/Dead Grass Block.png",
-                Color.DarkRed);
-            QueueDrawable("PlanetCute/Custom/Dead Dirt Block.png",
-                Color.DarkRed);
-            QueueDrawable("PlanetCute/Custom/Dead Water Block.png",
-                Color.DarkRed);
-
-			// Sealed blocks are immobile and white, nor can they be
-			// picked up or dropped on.
-            QueueDrawable("PlanetCute/Custom/Sealed Water.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Custom/Sealed Grass.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Custom/Sealed Dirt.png",
-				Color.White);
-			QueueDrawable("PlanetCute/Custom/Invisible.png");
-
-            // These are the construction blocks
-            QueueDrawable("PlanetCute/Brown Block.png", Color.White);
-            QueueDrawable("PlanetCute/Plain Block.png", Color.White);
-            QueueDrawable("PlanetCute/Ramp East.png", Color.White);
-            QueueDrawable("PlanetCute/Ramp North.png", Color.White);
-            QueueDrawable("PlanetCute/Ramp South.png", Color.White);
-            QueueDrawable("PlanetCute/Ramp West.png", Color.White);
-            QueueDrawable("PlanetCute/Door Tall Closed.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Door Tall Open.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Rock.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Roof East.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Roof North East.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Roof North West.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Roof North.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Roof South East.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Roof South West.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Roof South.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Roof West.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Stone Block Tall.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Stone Block.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Tree Short.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Tree Tall.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Tree Ugly.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Wall Block Tall.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Wall Block.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Window Tall.png",
-				Color.White);
-            QueueDrawable("PlanetCute/Wood Block.png",
-				Color.White);
-
-            // Selector
-            QueueDrawable("PlanetCute/Selector.png", Color.Yellow);
-            QueueDrawable("PlanetCute/Custom/Invalid Selector.png",
-                Color.Yellow);
-#endif
 		}
 		#endregion
 
@@ -307,6 +235,26 @@ namespace CuteGod
 		}
 
 		/// <summary>
+		/// Constructs a block and assigns the proper colors.
+		/// </summary>
+		public Block CreateBlock(string key)
+		{
+			// See if we have the sprite type
+			if (!sprites.Contains(key))
+				throw new Exception("No such block sprite key: " + key);
+
+			// Create the sprite
+			ISprite sprite = CreateSprite(key);
+
+			// Create a block and set it up
+			Block block = new Block(sprite);
+			OnImportBlock(block);
+
+			// Return the block
+			return block;
+		}
+
+		/// <summary>
 		/// Loads a single drawable and returns it.
 		/// </summary>
 		public IDrawable CreateDrawable(string key)
@@ -334,6 +282,75 @@ namespace CuteGod
 			// Grab the asset type
 			AssetSpriteType ast = sprites[key];
 			return ast.CreateRandomSprite();
+		}
+
+		/// <summary>
+		/// Imports the block into the system, assigning any values
+		/// that needs to be assigned.
+		/// </summary>
+		public void OnImportBlock(Block block)
+		{
+			// Get the asset key
+			if (block == null ||
+				block.Sprite == null ||
+				block.Sprite.ID == null)
+				return;
+
+			string key = block.Sprite.ID;
+
+			if (!sprites.Contains(key))
+				return;
+
+			AssetSpriteType ast = sprites[key];
+
+			// Assign the colors
+			block.Color = ast.Color;
+
+			// Figure out heights
+			if (key.Contains("Tall"))
+				block.Height = 2;
+
+			// Figure out shadows
+			block.CastsShadows = key.Contains("Block") ||
+				key.Contains("Wall") ||
+				key.Contains("Door") ||
+				key.Contains("Window");
+		}
+		#endregion
+
+		#region Meta Data Processing
+		/// <summary>
+		/// Reads the asset type information to gather information
+		/// such as sprite color or other information.
+		/// </summary>
+		private void LoadAssetTypeMeta(AssetSpriteType type,
+			FileInfo file)
+		{
+			// Open up the file
+			using (StreamReader sr = file.OpenText())
+			{
+				// Wrap it in an XML reader
+				XmlTextReader xml = new XmlTextReader(sr);
+
+				// Loop through it
+				while (xml.Read())
+				{
+					// Check for open elements
+					if (xml.NodeType == XmlNodeType.Element)
+					{
+						switch (xml.LocalName)
+						{
+							case "color":
+								// Assign a color to this block
+								type.Color = Color.FromArgb(
+									Int32.Parse(xml["r"]),
+									Int32.Parse(xml["g"]),
+									Int32.Parse(xml["b"]));
+								break;
+						}
+					}
+				}
+			}
 		}
 		#endregion
 	}

@@ -94,8 +94,6 @@ namespace CuteGod.Play
 			object sender,
 			BlockStackEventArgs args)
 		{
-			Debug("OnDirectionChanged: {0}", direction);
-
 			// At the apex, we change our direction by moving to the
 			// next stack as appropriate. Start by ignoring direction
 			// 0 since that is an inplace jumping.
@@ -129,13 +127,11 @@ namespace CuteGod.Play
 				else if (direction == 4) direction = 2;
 
 				// We are done
-				Debug("OnDirectionChanged: Destination no longer valid");
 				srcStack.Add(this);
 				return;
 			}
 
 			// Move this block to the next one
-			Debug("Removing: {0}", srcStack);
 			srcStack.Remove(this);
 			destStack.Add(this);
 
@@ -189,7 +185,6 @@ namespace CuteGod.Play
 					!Board.IsImmobileBlock(dest))
 				{
 					// Neither ground or immobile
-					Debug("Invalid target: Block type: {0}", dest.Sprite.ID);
 					return true;
 				}
 
@@ -200,7 +195,6 @@ namespace CuteGod.Play
 				if (dist > 1)
 				{
 					// Too much to jump
-					Debug("Invalid target: Height: {0}", dist);
 					return true;
 				}
 

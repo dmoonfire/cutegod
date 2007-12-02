@@ -95,7 +95,7 @@ namespace CuteGod.Play
             scroller.Register(blockViewport);
 
             // Create our selector icon
-            selector = new Block(AssetLoader.Instance.CreateSprite("Selector"));
+            selector = AssetLoader.Instance.CreateBlock("Selector");
             selector.Height = 0;
             selector.CastsShadows = false;
 
