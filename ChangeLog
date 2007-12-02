@@ -37,3 +37,6 @@
 	* CuteGod/Prayer.cs: Characters now bounce around a bit, as long
 	as they don't jump more than a single block and height and they
 	are only going in an east/west direction.
+
+	* CuteGod/SplashMode.cs: Allowed mouse-click to turn off splash
+	mode, keyboard always worked though.

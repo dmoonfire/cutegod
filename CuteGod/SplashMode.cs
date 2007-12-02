@@ -3,6 +3,8 @@ using BooGame.Input;
 using BooGame.Video;
 using CuteGod.Play;
 using MfGames.Sprite3;
+using MfGames.Sprite3.Gui;
+using MfGames.Utility;
 using System;
 using System.Drawing;
 
@@ -14,7 +16,7 @@ namespace CuteGod
 	/// out before switching to the next mode.
     /// </summary>
     public class SplashMode
-        : IGameMode
+	: Logable, IGameMode, IGuiMouseListener
     {
 		#region Constructors
 		public SplashMode(
@@ -56,6 +58,9 @@ namespace CuteGod
         {
 			// Create the texture
 			texture = Core.Backend.CreateTexture(imageFilename);
+
+			// Listen to some events
+            Game.GuiManager.MouseUpListeners.Add(this);
         }
 
         /// <summary>
@@ -63,10 +68,55 @@ namespace CuteGod
         /// </summary>
         public void Deactivate()
         {
+			// Trash our texture
 			texture.Dispose();
 			texture = null;
+
+			// Stop listening
+			Game.GuiManager.MouseUpListeners.Remove(this);
         }
         #endregion
+
+		#region Mouse Events
+        /// <summary>
+        /// Contains the priority of the mouse listener. This is typically
+        /// the Z-order for most sprites, but can be altered.
+        /// </summary>
+        public float MouseListenerPriority { get { return 1; } }
+
+        /// <summary>
+        /// Triggered when an object extending this class is placed
+        /// in GuiManager.MouseDownListeners and the mouse down event
+        /// is fired.
+        /// </summary>
+        /// <param name="args"></param>
+        public void MouseDown(GuiMouseEventArgs args)
+		{
+		}
+
+        /// <summary>
+        /// Triggered when an object extending this class is placed
+        /// in GuiManager.MouseDownListeners and the mouse motion event
+        /// is fired.
+        /// </summary>
+        /// <param name="args"></param>
+        public void MouseMotion(GuiMouseEventArgs args)
+		{
+		}
+
+        /// <summary>
+        /// Triggered when an object extending this class is placed
+        /// in GuiManager.MouseDownListeners and the mouse up event
+        /// is fired.
+        /// </summary>
+        /// <param name="args"></param>
+        public void MouseUp(GuiMouseEventArgs args)
+		{
+			// Switch modes
+			Debug("Mouse up!");
+			Game.GameMode = nextMode;
+		}
+		#endregion
 
 		#region Controller
 		/// <summary>

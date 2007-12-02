@@ -314,7 +314,6 @@ namespace CuteGod.Play
 			{
 				// Get the movement rates
 				float rate = (float) args.SecondsSinceLastUpdate;
-				float nsRate = Constants.PrayerNorthSouthAdjust * rate;
 				float ewRate = Constants.PrayerEastWestAdjust * rate;
 
 				// The direction is important. When we are moving up,
