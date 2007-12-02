@@ -21,6 +21,16 @@ compile: Resources/layouts.xml
 			Assets/ CuteGod/bin/Debug/Assets/; \
 	fi
 
+release:
+	# Compile the code
+	mono tools/prebuild.exe /target nant \
+		/file prebuild.xml /FRAMEWORK MONO_2_0
+	fnant build-release
+
+	# I hate that .dll's are executable
+	find -name "*.dll" -print0 | xargs -0 chmod a-x
+
+
 #CuteGod/layouts.xml
 update:
 	tools/create-sound-control.pl CuteGod

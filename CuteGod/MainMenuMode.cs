@@ -98,8 +98,10 @@ namespace CuteGod
 			title.Tint = Color.White;
 			sprites.Add(title);
 
+			System.Version v = GetType().Assembly.GetName().Version;
 			version = new TextDrawableSprite(Game.GetFont(SmallFontSize),
-				"Alpha (0.1)");
+				String.Format("{0}.{1}.{2}",
+					v.Major, v.Minor, v.Build));
 			version.Alignment = ContentAlignment.BottomRight;
 			version.Tint = Color.FromArgb(64, Color.White);
 			sprites.Add(version);
