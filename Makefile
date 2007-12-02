@@ -5,7 +5,7 @@ SPRITE3_SOURCE = $(HOME)/src/mfgames/Sprite3/
 
 all: compile
 
-compile: CuteGod/layouts.xml
+compile: Resources/layouts.xml
 	# Compile the code
 	mono tools/prebuild.exe /target nant \
 		/file prebuild.xml /FRAMEWORK MONO_2_0
@@ -32,7 +32,7 @@ clean:
 	find -name bin | xargs rm -rf
 
 CuteGod/layouts.xml: CuteGod/layouts.txt tools/cutegod-layouts.pl
-	tools/cutegod-layouts.pl CuteGod/layouts.txt > CuteGod/layouts.xml
+	tools/cutegod-layouts.pl Resources/layouts.txt > Resources/layouts.xml
 
 #refresh:
 #	cp $(BOOGAME_SOURCE)/src/Tao.FreeType/bin/Debug/Tao.FreeType.dll lib

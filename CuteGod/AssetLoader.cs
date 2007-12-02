@@ -48,6 +48,8 @@ namespace CuteGod
 			// Scan the Assets/Images directory for drawables
 			DirectoryInfo images = new DirectoryInfo(
 				Path.Combine("Assets", "Images"));
+			DirectoryInfo sounds = new DirectoryInfo(
+				Path.Combine("Assets", "Sounds"));
 
 			// Load the individual images into memory
 			foreach (FileInfo fi in images.GetFiles("*.png"))
@@ -86,6 +88,24 @@ namespace CuteGod
 
 					// Queue loading the drawable
 					Queue(new AssetLoaderSprite(sprite, path));
+				}
+			}
+
+			// Look for sounds and music
+			foreach (DirectoryInfo di in sounds.GetDirectories())
+			{
+				// Go through each file in this directory. The
+				// directory name is the category of music while the
+				// individual files are randomly selected from the
+				// category.
+				// "Vorbis is the new mp3"
+				foreach (FileInfo fi in di.GetFiles("*.ogg"))
+				{
+					// We want to register this file with the sound
+					// manager. Since the SoundManager doesn't load
+					// things, we are just registering directory with
+					// it.
+					Game.Sound.Register(di.Name, fi);
 				}
 			}
 

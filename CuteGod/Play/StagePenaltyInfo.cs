@@ -88,9 +88,14 @@ namespace CuteGod.Play
 					int select =
 						Entropy.Next(0, (int) StagePenaltyType.Maximum);
 					StagePenaltyType type = (StagePenaltyType) select;
-					StagePenaltyInfo info = hash[type];
+
+					// Return null if we are none
+					if (type == StagePenaltyType.None)
+						return null;
 
 					// See if we can apply this
+					StagePenaltyInfo info = hash[type];
+
 					if (info.IsApplicable)
 					{
 						info.Apply();
@@ -184,7 +189,7 @@ namespace CuteGod.Play
 						+ Game.State.DeadWaterCount > 0;
 
 				case StagePenaltyType.IncreasedGrabCost:
-					return true;
+					return Grab.State.GrabCost * 5 <= Game.State.StagesStarted;
 
 				case StagePenaltyType.Countdown:
 					return Game.State.SecondsPerTurn < 0 &&

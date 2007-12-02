@@ -34,9 +34,6 @@ namespace CuteGod
         /// </summary>
         public void Initialize()
         {
-            // Read in the XML stream
-            ReadXml();
-
             // Set up the SDL sound
             SdlMixer.Mix_OpenAudio(
                 SdlMixer.MIX_DEFAULT_FREQUENCY,
@@ -48,7 +45,7 @@ namespace CuteGod
             SdlMixer.Mix_AllocateChannels(MaximumSoundsChunks);
 
             // Default volumnes
-			int vol = Game.Config.GetInt(Constants.ConfigMusicVolume, 20);
+			int vol = Game.Config.GetInt(Constants.ConfigMusicVolume, 75);
             SdlMixer.Mix_VolumeMusic(vol);
 
             // Hook up the events
@@ -58,39 +55,6 @@ namespace CuteGod
             channelStopped =
 				new SdlMixer.ChannelFinishedDelegate(OnChannelEnded);
             SdlMixer.Mix_ChannelFinished(channelStopped);
-
-            // Trigger the first background
-            PlayMusic("Background");
-        }
-
-        /// <summary>
-        /// Loads the Xml as an embedded resource.
-        /// </summary>
-        private void ReadXml()
-        {
-            // Get the manifest string
-            Stream stream = GetType().Assembly
-                .GetManifestResourceStream("CuteGod.sounds.xml");
-
-            // Create an XML reader out of it
-            XmlTextReader xml = new XmlTextReader(stream);
-
-            // Loop through the file
-            while (xml.Read())
-            {
-                // Ignore all but start elements
-                if (xml.NodeType != XmlNodeType.Element)
-                    continue;
-
-                // Check for name
-                if (xml.LocalName == "category")
-                {
-                    // Load the category
-                    SoundCategory sc = new SoundCategory();
-                    sc.Read(xml);
-                    categories[sc.Name] = sc;
-                }
-            }
         }
 
 		/// <summary>
@@ -104,6 +68,33 @@ namespace CuteGod
 			SdlMixer.Mix_CloseAudio();
 		}
         #endregion
+
+		#region Registering
+		/// <summary>
+		/// Registers a single sound in a given category, creating it
+		/// if needed.
+		/// </summary>
+		public void Register(string category, FileInfo soundFile)
+		{
+			// Create the category if we don't have it, otherwise load
+			// it into a variable
+			SoundCategory sc = null;
+
+			if (!categories.Contains(category))
+			{
+				sc = new SoundCategory();
+				sc.Name = category;
+				categories[category] = sc;
+			}
+			else
+			{
+				sc = categories[category];
+			}
+
+			// Add this file
+			sc.Add(soundFile);
+		}
+		#endregion
 
         #region Playing Music
         private IntPtr musicChunk;
@@ -174,7 +165,8 @@ namespace CuteGod
             }
 
             // Get the random song key
-            string sound = categories[key].GetRandomSound();
+			FileInfo file = categories[key].GetRandomSound();
+            string sound = file.FullName;
 			Debug("Playing music: {0}", sound);
             musicChunk = SdlMixer.Mix_LoadMUS(sound);
 
@@ -194,7 +186,7 @@ namespace CuteGod
 			{
                 // Remove the chunk
                 SdlMixer.Mix_FreeMusic(musicChunk);
-                categories[key].Remove(sound);
+                categories[key].Remove(file);
 				
                 // Find a new one
                 PlayMusic(key);
@@ -224,7 +216,8 @@ namespace CuteGod
             }
 
             // Get the random song key
-            string sound = categories[key].GetRandomSound();
+			FileInfo file = categories[key].GetRandomSound();
+            string sound = file.FullName;
 			Debug("Playing sound: {0}", sound);
             IntPtr soundChunk = SdlMixer.Mix_LoadWAV(sound);
 
@@ -244,7 +237,7 @@ namespace CuteGod
             {
                 // Remove the chunk
                 SdlMixer.Mix_FreeChunk(soundChunk);
-                categories[key].Remove(sound);
+                categories[key].Remove(file);
 
                 // Find a new one
                 PlaySound(key);
@@ -274,6 +267,14 @@ namespace CuteGod
         {
             InterruptMusic("Prayer Completed");
         }
+
+		/// <summary>
+		/// Triggered when the background music needs to be started.
+		/// </summary>
+		public void StartBackground()
+		{
+			PlayMusic("Background");
+		}
         #endregion
 
         #region Block Events

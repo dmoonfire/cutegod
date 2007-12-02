@@ -1,6 +1,7 @@
 using C5;
 using MfGames.Utility;
 using System;
+using System.IO;
 using System.Xml;
 
 namespace CuteGod
@@ -11,11 +12,11 @@ namespace CuteGod
     /// a random selection of sounds for any specific event.
     /// </summary>
     public class SoundCategory
-        : ArrayList<string>
+        : ArrayList<FileInfo>
     {
         #region Properties
         private string name;
-        private ArrayList<string> recentlyPlayed = new ArrayList<string>();
+        private ArrayList<FileInfo> recentlyPlayed = new ArrayList<FileInfo>();
 
         /// <summary>
         /// Contains the name of the category.
@@ -36,7 +37,7 @@ namespace CuteGod
         /// Contains the recently played music, this is used to make sure
         /// the same sound isn't played constantly.
         /// </summary>
-        public IList<string> RecentlyPlayed
+        public IList<FileInfo> RecentlyPlayed
         {
             get { return recentlyPlayed; }
         }
@@ -56,7 +57,7 @@ namespace CuteGod
         /// Randomly selects a sound from the list and returns the results.
         /// </summary>
         /// <returns></returns>
-        public string GetRandomSound()
+        public FileInfo GetRandomSound()
         {
             // Ignore empty lists
             if (Count == 0)
@@ -72,7 +73,7 @@ namespace CuteGod
             {
                 // Select a random sound
                 int index = Entropy.Next(0, Count);
-                string sound = this[index];
+                FileInfo sound = this[index];
 
                 // See if we are in the list
                 if (!recentlyPlayed.Contains(sound))
@@ -80,34 +81,6 @@ namespace CuteGod
                     // We aren't in the recently played
                     recentlyPlayed.InsertFirst(sound);
                     return sound;
-                }
-            }
-        }
-        #endregion
-
-        #region XML
-        /// <summary>
-        /// Reads the XML stream and populates the categories.
-        /// </summary>
-        /// <param name="xml"></param>
-        public void Read(XmlTextReader xml)
-        {
-            // We already have the category tag, so grab the name
-            name = xml["title"];
-
-            // Loop forever to get the sounds until we finish
-            while (xml.Read())
-            {
-                switch (xml.NodeType)
-                {
-                    case XmlNodeType.EndElement:
-                        if (xml.LocalName == "category")
-                            return;
-                        break;
-                    case XmlNodeType.Element:
-                        if (xml.LocalName == "sound")
-                            Add(xml.ReadString());
-                        break;
                 }
             }
         }

@@ -5,6 +5,8 @@ namespace CuteGod.Play
 {
     public enum StagePenaltyType
     {
+		None,
+
         ReducedGrass,
         ReducedDirt,
         ReducedWater,

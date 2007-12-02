@@ -85,11 +85,8 @@
       <Files>
         <Match pattern="*.cs" recurse="true"/>
 
-        <Match pattern="credits.xml" buildAction="EmbeddedResource"/>
-        <Match pattern="sounds.xml" buildAction="EmbeddedResource"/>
-        <Match pattern="layouts.xml" buildAction="EmbeddedResource"/>
-        <Match pattern="penalties.xml" buildAction="EmbeddedResource"/>
-        <Match pattern="bonuses.xml" buildAction="EmbeddedResource"/>
+        <Match path="..\\Resources" pattern="*.xml"
+	       buildAction="EmbeddedResource"/>
         
 	<?if OS = "Win32" ?>
 	<Match path="..\\lib\\win32deps" pattern="*.dll"

@@ -9,3 +9,27 @@
 
 	* Changed asset loading to be based on dynamic scanning of the
 	directories instead of a hard-coded list of files.
+
+2007-12-02 Dylan R. E. Moonfire <contact@mfgames.com>
+
+	* CuteGod/sounds.xml removed in favor of dynamically scanning
+	using the AssetLoader functionality.
+
+	* bonuses.xml, credits.xml, layouts.txt, layouts.xml, and
+	penalties.xml were all moved into Resources/ to keep them out of
+	the source tree and easier to find.
+
+	* CuteGod/SoundManager.cs, CuteGod/SoundCategory.cs: Removed the
+	XML reading from a resource and updated it to use a Register()
+	function from the AssetLoaderSound instead. This way, the
+	resources can more easily be updated, removed, and altered in a
+	separate package.
+
+	* Added a "none" to the penalty type which can always be
+	selected. This just moves on without a end of stage screen.
+
+	* Changed the Trickster penalty (+1 grab cost) to only capable of
+	happening if GrabCost * 5 <= StagesStarted (remember, it starts
+	with 3 already). This should reduce the frequence of the trickster
+	nicely, but if you get a bunch of bonuses to reduce it, you may
+	get a higher frequency of them for a bit.

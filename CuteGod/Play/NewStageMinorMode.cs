@@ -39,6 +39,10 @@ namespace CuteGod.Play
             // Figure out the penalty
 			StagePenaltyInfo info = StagePenaltyInfo.Random;
 
+			// If we are null, then just continue on
+			if (info == null)
+				Timeout();
+
 			// Set the value
 			Subtitle = "New Stage";
 			Title = info.Title;

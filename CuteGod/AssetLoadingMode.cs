@@ -54,6 +54,9 @@ namespace CuteGod.Play
         /// </summary>
         public void Deactivate()
         {
+			// Add this point, the sounds should be properly loaded,
+            // so trigger the background music.
+            Game.Sound.StartBackground();
         }
         #endregion
 
