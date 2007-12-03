@@ -56,3 +56,5 @@
 
 	* Added a word wrap to the stage displays to they at least look
 	resonable in most cases.
+
+	* Fixed a bug with prayers not working properly.

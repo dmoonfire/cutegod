@@ -83,6 +83,7 @@ namespace CuteGod
 			{
 				ISprite ds = new DrawableSprite(ras.Drawables[0]);
 				ds.ID = name;
+				return ds;
 			}
 
 			// Otherwise, create a fixed rate (for now)

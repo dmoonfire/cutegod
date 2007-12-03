@@ -506,13 +506,10 @@ namespace CuteGod.Play
                     // Move everything but the bottom-most one
                     foreach (Block block in stack0)
                     {
-						// Positions 0's are sealed
-                        if (block.BottomPosition == 0)
+						// Seal it to change how it looks on the
+						// mini map
+						switch (block.Sprite.ID)
 						{
-							// Seal it to change how it looks on the
-							// mini map
-							switch (block.Sprite.ID)
-							{
 							case "Water Block":
 								bBlock.Sprite =	AssetLoader.Instance
 									.CreateSprite("Sealed Water Block");
@@ -528,16 +525,10 @@ namespace CuteGod.Play
 									.CreateSprite("Sealed Dirt Block");
 								bBlock.Data = false;
 								break;
-							case "Invisible":
-								// Do nothing
-								break;
-							default:
-								Error("Cannot identify base block: {0}",
-									block.Sprite.ID);
-								break;
-							}
 						}
-						else
+
+						// Positions 0's are sealed
+                        if (block.BottomPosition != 0)
 						{
 							// Move it over to the new one and add the position
 							// to the bottom, minus one because we ignore the
