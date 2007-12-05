@@ -39,12 +39,18 @@ release:
 	find -name "*.dll" -print0 | xargs -0 chmod a-x
 
 	# Create a tarball of the source code
-	mv CuteGod/bin/Release cutegod-$(VERSION)
+	mv CuteGod/bin/Release cutegod-$(VERSION)-binary
+	tar -cjf cutegod-$(VERSION)-binary.tar.bz2 cutegod-$(VERSION)-binary
+	rm -rf cutegod-$(VERSION)-binary
+
+	# Create the release changelog
+	cp ChangeLog cutegod-$(VERSION).changelog
+
+	# Create the source changelog
+	svn export http://mfgames.com/svn/CuteGod/trunk cutegod-$(VERSION)
+	rm -rf cutegod-$(VERSION)/Assets
 	tar -cjf cutegod-$(VERSION).tar.bz2 cutegod-$(VERSION)
 	rm -rf cutegod-$(VERSION)
-
-	# Create the release
-	cp ChangeLog cutegod-$(VERSION).changelog
 
 	# Create the data zip
 	echo Building data package $(DATA_VERSION)
