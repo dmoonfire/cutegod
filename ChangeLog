@@ -58,3 +58,10 @@
 	resonable in most cases.
 
 	* Fixed a bug with prayers not working properly.
+
+2007-12-04 Dylan R. E. Moonfire <contact@mfgames.com>
+
+	* Added a vertical display of the currently selected stack so you
+	can tell how high it actually is and the blocks buried
+	underneath. This uses a filter code so the bugs won't always be
+	visible.

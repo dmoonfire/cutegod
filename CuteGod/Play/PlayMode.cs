@@ -80,6 +80,18 @@ namespace CuteGod.Play
             blockViewport.FocusPosition = Constants.FocusPosition;
             sprites.Add(blockViewport);
 
+			// Create the top-down vertical explorer
+			vertViewport = new VerticalViewport(Game.State.Board);
+			vertViewport.Z = 50;
+			vertViewport.BackgroundColor = Color.FromArgb(32, Color.Black);
+			vertViewport.Padding = 2;
+			vertViewport.BlockWidth = vertViewport.BlockHeight = 16;
+			vertViewport.MaximumHeight = vertViewport.MinimumHeight = 4;
+			vertViewport.Size = vertViewport.Extents.Size;
+			vertViewport.Visible = false;
+			vertViewport.Opacity = 0.75f;
+			sprites.Add(vertViewport);
+
             // Speeches and overlays
             speeches = new SpriteViewport();
             speeches.Z = 100;
@@ -207,6 +219,7 @@ namespace CuteGod.Play
         private SpriteViewport sprites;
         private IndicatorsViewport indicators;
         private BlockViewport blockViewport;
+		private VerticalViewport vertViewport;
         private MouseEdgeScroller scroller;
         private SpriteViewport speeches;
 
@@ -722,6 +735,7 @@ namespace CuteGod.Play
                 // Change the selector so it shows an incorrect selection
                 selector.Sprite = AssetLoader.Instance
 					.CreateSprite(Constants.InvalidSelectorName);
+				vertViewport.Visible = false;
 
                 // We are done
                 return;
@@ -730,6 +744,20 @@ namespace CuteGod.Play
             // Change the selector to show a valid selector.
             selector.Sprite = AssetLoader.Instance
 				.CreateSprite(Constants.SelectorName);
+
+			// Move the vertical stack display to the currently
+			// selected stack and make it visible
+			PointF vertPoint = blockViewport.ToPoint(
+				currentStack.X, currentStack.Y,
+				currentStack.TopPosition);
+			vertViewport.Visible = true;
+			vertViewport.BlockStackX = currentStack.X;
+			vertViewport.BlockStackY = currentStack.Y;
+			vertViewport.Point = new PointF(
+				vertPoint.X
+				+ blockViewport.BlockWidth / 2
+				- vertViewport.Size.Width / 2,
+				vertPoint.Y);
 
             // We are going to be grabbing or dropping
             Game.GuiManager.MouseUpListeners.Add(this);
@@ -753,6 +781,7 @@ namespace CuteGod.Play
             // Remove the selectors
             // We use RemoveAll() because of a duplication bug
             currentStack = null;
+			vertViewport.Visible = false;
 
             // Since we won't be listening to down, remove it
             Game.GuiManager.MouseUpListeners.Remove(this);
