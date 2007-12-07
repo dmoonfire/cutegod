@@ -13,7 +13,7 @@ compile: Resources/layouts.xml
 	# Compile the code
 	mono tools/prebuild.exe /target nant \
 		/file prebuild.xml /FRAMEWORK MONO_2_0
-	fnant build-debug
+	nant build-debug
 
 	# I hate that .dll's are executable
 	find -name "*.dll" -print0 | xargs -0 chmod a-x
@@ -32,7 +32,7 @@ release:
 	# Compile the code
 	mono tools/prebuild.exe /target nant \
 		/file prebuild.xml /FRAMEWORK MONO_2_0
-	fnant build-release
+	nant build-release
 	cp tools/cutegod CuteGod/bin/Release
 
 	# I hate that .dll's are executable
