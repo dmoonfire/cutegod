@@ -1,0 +1,17 @@
+
+# /
+/*.zip
+/*.tar.bz2
+/*.changelog
+/*.build
+
+# /CuteGod/
+/CuteGod/CuteGod.exe.build
+/CuteGod/CuteGod.mdp
+/CuteGod/bin
+/CuteGod/obj
+/CuteGod/CuteGod.csproj
+/CuteGod/CuteGod.csproj.user
+
+# /Installer/
+/Installer/Output
