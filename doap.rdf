@@ -2,10 +2,8 @@
 <Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 	 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
 	 xmlns:dc="http://purl.org/dc/elements/1.1/"
-	 xmlns:doapext="http://mfgames.com/2009/doap-ext"
 	 xmlns:foaf="http://xmlns.com/foaf/0.1/"
 	 xmlns="http://usefulinc.com/ns/doap#">
-  <doapext:short-name>cutegod</doapext:short-name>
   <name>CuteGod</name>
   <homepage rdf:resource="http://mfgames.com/cutegod"/>
 
@@ -16,7 +14,6 @@
   <!-- Metadata -->
   <audience>Computer game players</audience>
   <license rdf:resource="http://www.opensource.org/licenses/mit-license.php">MIT</license>
-  <programming-language>CIL</programming-language>
   <programming-language>C#</programming-language>
 
   <!-- Credits -->
@@ -32,9 +29,6 @@
       <foaf:homepage rdf:resource="http://lostgarden.com/" />
     </foaf:Person>
   </developer>
-
-  <!-- Project Pages -->
-  <doapext:project-page rdf:resource="http://mfgames.com/cutegod/credits">Credits</doapext:project-page>
 
   <!-- Releases -->
   <release>
@@ -58,4 +52,11 @@
       <file-release rdf:resource="http://mfgames.com/releases/cutegod/cutegod-data-0.3.0.zip">Binary (.zip)</file-release>
     </Version>
   </release>
+
+  <!-- Repositories -->
+  <repository>
+    <GitRepository>
+      <browse rdf:resource="https://github.com/dmoonfire/cutegod"/>
+    </GitRepository>
+  </repository>
 </Project>
