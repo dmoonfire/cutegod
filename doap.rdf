@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	 xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	 xmlns:dc="http://purl.org/dc/elements/1.1/"
+	 xmlns:doapext="http://mfgames.com/2009/doap-ext"
+	 xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	 xmlns="http://usefulinc.com/ns/doap#">
+  <doapext:short-name>cutegod</doapext:short-name>
+  <name>CuteGod</name>
+  <homepage rdf:resource="http://mfgames.com/cutegod"/>
+
+  <shortdesc xml:lang="en">A cute sandbox game inspired by Danc's CuteGod programming challenge.</shortdesc>
+
+  <description xml:lang="en">What do you do when you get an entire universe for your first millineum birthday? The only thing you can do, play around and have fun. CuteGod is a sandbox game that lets you rearrange the world while fulfilling the prayers of the adorable people wandering around. You pick up and arrange blocks of water, grass, and dirt to match a pattern, then your parents reward you with laying down houses for your worshippers.</description>
+
+  <!-- Metadata -->
+  <audience>Computer game players</audience>
+  <license rdf:resource="http://www.opensource.org/licenses/mit-license.php">MIT</license>
+  <programming-language>CIL</programming-language>
+  <programming-language>C#</programming-language>
+
+  <!-- Credits -->
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Dylan R. E. Moonfire</foaf:name>
+      <foaf:homepage rdf:resource="http://d.moonfire.us/" />
+    </foaf:Person>
+  </maintainer>
+  <developer>
+    <foaf:Person>
+      <foaf:name>Danc</foaf:name>
+      <foaf:homepage rdf:resource="http://lostgarden.com/" />
+    </foaf:Person>
+  </developer>
+
+  <!-- Project Pages -->
+  <doapext:project-page rdf:resource="http://mfgames.com/cutegod/credits">Credits</doapext:project-page>
+
+  <!-- Releases -->
+  <release>
+    <Version>
+      <name>unstable</name>
+      <revision>0.3.0</revision>
+
+      <file-release rdf:resource="http://mfgames.com/releases/cutegod/cutegod-0.3.0.changelog">Change Log</file-release>
+      <file-release rdf:resource="http://mfgames.com/releases/cutegod/cutegod-0.3.0.tar.bz2">Source (.tar.bz2)</file-release>
+      <file-release rdf:resource="http://mfgames.com/releases/cutegod/cutegod-0.3.0-binary.tar.bz2">Binary (.tar.bz2)</file-release>
+      <file-release rdf:resource="http://mfgames.com/releases/cutegod/cutegod-0.3.0.exe">Binary (Windows Installer)</file-release>
+    </Version>
+  </release>
+
+  <release>
+    <Version>
+      <name>data</name>
+      <revision>0.3.0</revision>
+
+      <file-release rdf:resource="http://mfgames.com/releases/cutegod/cutegod-data-0.3.0.changelog">Change Log</file-release>
+      <file-release rdf:resource="http://mfgames.com/releases/cutegod/cutegod-data-0.3.0.zip">Binary (.zip)</file-release>
+    </Version>
+  </release>
+</Project>
